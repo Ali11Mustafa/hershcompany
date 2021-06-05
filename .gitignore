@@ -1,0 +1,8 @@
+node_modules/
+*.env
+.cache/
+public/img/posters/
+contollers/viewsController.js/
+contollers/profilesController.js/
+
+git rm --cached -r public/img/posters/
