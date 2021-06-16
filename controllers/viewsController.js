@@ -1,389 +1,225 @@
 const AllPosters = require('../models/postersModel');
 const Allviews = require('../models/viewsModel');
-const Profile = require('../models/profilesModel');
 const Products = require('../models/productModel');
-
+const Categories = require('../models/categoriesModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
-exports.products = catchAsync(async (req, res, next) => {
-  await Allviews.updateOne({ $inc: { homePageHasView: 1 } });
+exports.products = catchAsync(async(req, res) => {
+    await Allviews.updateOne({ $inc: { homePageHasView: 1 } });
 
-  const allProducts = await Products.find({}).limit(8);
+    const featuredProduct = await Products.find({})
+        .sort({ _id: -1 })
+        .limit(8);
 
-  const populars = await Products.find({
-    typeProduct: {
-      $eq: 'popular'
-    }
-  })
-    .sort({ _id: -1 })
-    .limit(8);
+    const sliderProduct = await Products.find({})
+        .sort({ _id: -1 })
+        .limit(3);
 
-  const newArrivals = await Products.find({
-    typeProduct: {
-      $eq: 'NewArrival'
-    }
-  })
-    .sort({ _id: -1 })
-    .limit(8);
-
-  const bestSellers = await Products.find({
-    typeProduct: {
-      $eq: 'bestSeller'
-    }
-  })
-    .sort({ _id: -1 })
-    .limit(8);
-
-  const specialOffers = await Products.find({
-    typeProduct: {
-      $eq: 'specialOffer'
-    }
-  })
-    .sort({ _id: -1 })
-    .limit(8);
-
-  const views = await Allviews.find({});
-  res.status(200).render('pages/index', {
-    populars: populars,
-    newArrivals: newArrivals,
-    bestSellers: bestSellers,
-    specialOffers: specialOffers,
-    allProducts: allProducts
-  });
-});
-
-exports.updatedAllThings = catchAsync(async (req, res, next) => {
-  //const allPosters = await AllPosters.find().sort({ _id: -1 });
-  let finalRes;
-  let arr = [{ memberNameEnglish: 'English', numOfPosters: 5 }];
-  const allPoster = await AllPosters.find({}).select('memberNameEnglish');
-  //console.log(allPoster);
-  await Profile.find().then(memes => {
-    memes.forEach(meme => {
-      //console.log(meme.memberNameEnglish);
-      const res = allPoster.filter(
-        el => el.memberNameEnglish === meme.memberNameEnglish
-      );
-      finalRes = res.length;
-      arr.push({
-        memberNameEnglish: meme.memberNameEnglish,
-        numOfPosters: finalRes
-      });
+    let posSystems;
+    const posSystemCategorey = await Categories.find({
+        name: { $eq: 'posSystem' }
+    }).populate('products');
+    posSystemCategorey.forEach(function(categorey) {
+        posSystems = categorey.products
+            .reverse()
+            .slice(0, 8);
     });
-  });
 
-  for (var i = 1; i < arr.length; i++) {
-    let resProfilee = await Profile.findOne({
-      memberNameEnglish: {
-        $eq: arr[i].memberNameEnglish
-      }
+    let receiptPrinters;
+    const receiptPrinterCategorey = await Categories.find({
+        name: { $eq: 'receiptPrinter' }
+    }).populate('products');
+    receiptPrinterCategorey.forEach(function(categorey) {
+        receiptPrinters = categorey.products.reverse().slice(0, 8);
     });
-    //console.log(resProfilee);
-    await resProfilee.updateOne({
-      $set: { numOfPosters: arr[i].numOfPosters }
+
+    let barcodePrinters;
+    const barcodePrinterCategorey = await Categories.find({
+        name: { $eq: 'barcodePrinter' }
+    }).populate('products');
+    barcodePrinterCategorey.forEach(function(categorey) {
+        barcodePrinters = categorey.products.reverse().slice(0, 8);
     });
-  }
 
-  const updatedProfile = await Profile.find({});
+    let scanners;
+    const scannerCategorey = await Categories.find({
+        name: { $eq: 'scanner' }
+    }).populate('products');
+    scannerCategorey.forEach(function(categorey) {
+        scanners = categorey.products.reverse().slice(0, 8);
+    });
 
-  res.status(200).json({
-    status: 'success',
-    results: updatedProfile.length,
-    data: {
-      profile: updatedProfile
-    }
-  });
+    let dummyProducts;
+    const dummyProductCategorey = await Categories.find({
+        name: { $eq: 'dummyProduct' }
+    }).populate('products');
+    dummyProductCategorey.forEach(function(categorey) {
+        dummyProducts = categorey.products.reverse().slice(0, 2);
+    });
+
+    let specialProducts;
+    const specialProductCategorey = await Categories.find({
+        name: { $eq: 'specialProduct' }
+    }).populate('products');
+    specialProductCategorey.forEach(function(categorey) {
+        specialProducts = categorey.products.reverse().slice(0, 3);
+    });
+
+    let wirelessCallingProducts;
+    const wirelessCallingProductCategorey = await Categories.find({
+        name: { $eq: 'wirelessCallingProduct' }
+    }).populate('products');
+    wirelessCallingProductCategorey.forEach(function(categorey) {
+        wirelessCallingProducts = categorey.products.reverse().slice(0, 3);
+    });
+
+    console.log(scanners);
+
+    //const views = await Allviews.find({});
+    res.status(200).render('pages/index', {
+        posSystems: posSystems,
+        receiptPrinters: receiptPrinters,
+        barcodePrinters: barcodePrinters,
+        scanners: scanners,
+        sliderProducts: sliderProduct,
+        featuredProducts: featuredProduct,
+        dummyProducts: dummyProducts,
+        specialProducts: specialProducts,
+        wirelessCallingProducts: wirelessCallingProducts
+    });
 });
 
-exports.getArticle = catchAsync(async (req, res, next) => {
-  // 1) Get the data, for the requested tour (including reviews and guides)
-  const article = await AllPosters.findOne({
-    slug: req.params.slug
-  });
-
-  // article has viewed
-  await AllPosters.updateOne(
-    // find record with slug name
-    { slug: req.params.slug },
-    // increment it's property called "ran" by 1
-    { $inc: { hasViewd: 1 } }
-  );
-
-  if (!article) {
-    return next(new AppError('There is no article with that name.', 404));
-  } // hello
-
-  // res.status(200).json({
-  //   status: 'success',
-  //   results: article.length,
-  //   data: {
-  //     posters: article
-  //   }
-  // });
-
-  res.status(200).render('article', {
-    title: `${article.title} Poster`,
-    article
-  });
+exports.adminDashboard = catchAsync(async(req, res, next) => {
+    const products = await Products.find().populate('categories', 'name'); //-_id
+    const categories = await Categories.find().populate('products'); //-_id
+    // SEND RESPONSE
+    res.status(200).render('pages/admin_dashboard', {
+        products,
+        categories
+    });
 });
 
-exports.getProfiles = catchAsync(async (req, res, next) => {
-  const profile = await Profile.find({}).sort({ numOfPosters: -1 });
-  const filterProfile = profile.filter(
-    el =>
-      el.numOfPosters >= 5 &&
-      el.typeNaxshandn !== 'naxshand' &&
-      el.typeDeveloper !== 'developer'
-  );
+exports.addProductWithAdminDashboard = catchAsync(async(req, res, next) => {
+    const categories = await Categories.find().populate('products'); //-_id
 
-  if (!filterProfile) {
-    return next(new AppError('There is no profile with that name.', 404));
-  }
-
-  const naxshandn = await Profile.find({});
-  const filterNaxshandn = naxshandn.filter(
-    el => el.typeNaxshandn === 'naxshandn'
-  );
-
-  const developer = await Profile.find({});
-  const filterDeveloper = developer.filter(
-    el => el.typeDeveloper === 'developer'
-  );
-
-  // res.status(200).json({
-  //   status: 'success',
-  //   results: filterProfile.length,
-  //   data: {
-  //     profile: filterProfile,
-  //     naxshandn: filterNaxshandn,
-  //     developer: filterDeveloper
-  //   }
-  // });
-  res.status(200).render('profile', {
-    title: `${profile.title} Poster`,
-    profile: filterProfile,
-    naxshandn: filterNaxshandn,
-    developer: filterDeveloper
-  });
+    // SEND RESPONSE
+    res.status(200).render('admin_dashboard/addProduct', {
+        categories
+    });
 });
 
-exports.getPosterEachMember = catchAsync(async (req, res, next) => {
-  const member = await AllPosters.find({
-    memberNameEnglish: {
-      $eq: req.params.slugMember
-    }
-  });
 
-  // console.log(member.length);
 
-  const mProfile = await Profile.findOne({
-    memberNameEnglish: {
-      $eq: req.params.slugMember
-    }
-  });
+exports.sigleProduct = catchAsync(async(req, res, next) => {
+    let id = req.query.id;
+    let categoreyId = req.query.categoreyId;
 
-  if (!member) {
-    return next(new AppError('There is no article with that name.', 404));
-  }
+    const getOneProduct = await Products.find({
+        _id: {
+            $eq: id
+        }
+    }).populate('categories', 'name');
+    console.log(getOneProduct);
 
-  // res.status(200).json({
-  //   status: 'success',
-  //   results: mProfile.length,
-  //   data: {
-  //     mProfile
-  //   }
-  // });
+    const productsByCategory = await Products.find({
+            categories: { _id: categoreyId }
+        })
+        .populate('categories', 'name')
+        .limit(3);
 
-  res.status(200).render('posterEachMember', {
-    title: `${member.title} Poster`,
-    member,
-    mProfile
-  });
+    //console.log(productsByCategory);
+
+    // SEND RESPONSE
+    res.status(200).render('pages/single_product', {
+        product: getOneProduct,
+        relatedProducts: productsByCategory
+    });
 });
 
-exports.getFilm = catchAsync(async (req, res, next) => {
-  const film = await AllPosters.find({
-    typeFilm: {
-      $eq: 'film'
-    }
-  })
-    .sort({ _id: -1 })
-    .limit(120);
+exports.search = catchAsync(async(req, res, next) => {
+    const regex = new RegExp(`${req.query.dsearch}`, 'gi');
+    const searchFor = req.query.dsearch;
+    const findRes = await Products.find({
+        productName: { $regex: regex }
+    }).populate('categories', 'name').limit(14);
 
-  res.status(200).render('film', {
-    title: 'film page',
-    film
-  });
+    console.log(findRes);
+
+    res.status(200).render('pages/search', {
+        title: 'all',
+        allProducts: findRes,
+        searchFor: searchFor
+    });
 });
 
-exports.getTop = catchAsync(async (req, res, next) => {
-  const top = await AllPosters.find({
-    typeTop: {
-      $eq: 'top'
-    }
-  })
-    .sort({ _id: -1 })
-    .limit(120);
+exports.shop = catchAsync(async(req, res, next) => {
 
-  res.status(200).render('top', {
-    title: 'Top 250 movie rated',
-    top
-  });
+    // // Get Recent Products
+    // const products = await Products.find().populate('categories').sort({ _id: -1 }).limit(3);
+
+    // console.log(products);
+
+    // res.status(200).render('pages/shop', {
+    //     recentProducts: products
+    // });
+
+    let posSystems;
+    const posSystemCategorey = await Categories.find({
+        name: { $eq: 'posSystem' }
+    }).populate('products');
+    posSystemCategorey.forEach(function(categorey) {
+        posSystems = categorey.products
+            .reverse()
+            .slice(0, 8);
+    });
+
+    let receiptPrinters;
+    const receiptPrinterCategorey = await Categories.find({
+        name: { $eq: 'receiptPrinter' }
+    }).populate('products');
+    receiptPrinterCategorey.forEach(function(categorey) {
+        receiptPrinters = categorey.products.reverse().slice(0, 8);
+    });
+
+    let barcodePrinters;
+    const barcodePrinterCategorey = await Categories.find({
+        name: { $eq: 'barcodePrinter' }
+    }).populate('products');
+    barcodePrinterCategorey.forEach(function(categorey) {
+        barcodePrinters = categorey.products.reverse().slice(0, 8);
+    });
+
+    let scanners;
+    const scannerCategorey = await Categories.find({
+        name: { $eq: 'scanner' }
+    }).populate('products');
+    scannerCategorey.forEach(function(categorey) {
+        scanners = categorey.products.reverse().slice(0, 8);
+    });
+
+    let wirelessCallingProducts;
+    const wirelessCallingProductCategorey = await Categories.find({
+        name: { $eq: 'wirelessCallingProduct' }
+    }).populate('products');
+    wirelessCallingProductCategorey.forEach(function(categorey) {
+        wirelessCallingProducts = categorey.products.reverse().slice(0, 3);
+    });
+
+    console.log(scanners);
+
+    //const views = await Allviews.find({});
+    res.status(200).render('pages/shop', {
+        posSystems: posSystems,
+        receiptPrinters: receiptPrinters,
+        barcodePrinters: barcodePrinters,
+        scanners: scanners,
+        wirelessCallingProducts: wirelessCallingProducts
+    });
 });
 
-exports.getVariety = catchAsync(async (req, res, next) => {
-  const variety = await AllPosters.find({
-    typeVariety: {
-      $eq: 'variety'
-    }
-  })
-    .sort({ _id: -1 })
-    .limit(120);
 
-  res.status(200).render('variety', {
-    title: 'variety',
-    variety
-  });
-});
 
-exports.getDirector = catchAsync(async (req, res, next) => {
-  const director = await AllPosters.find({
-    typeDirector: {
-      $eq: 'director'
-    }
-  })
-    .sort({ _id: -1 })
-    .limit(120);
-
-  res.status(200).render('director', {
-    title: 'director',
-    director
-  });
-});
-
-exports.getCompany = catchAsync(async (req, res, next) => {
-  const company = await AllPosters.find({
-    typeCompany: {
-      $eq: 'company'
-    }
-  })
-    .sort({ _id: -1 })
-    .limit(120);
-
-  res.status(200).render('company', {
-    title: 'company',
-    company
-  });
-});
-
-exports.getGift = catchAsync(async (req, res, next) => {
-  const gift = await AllPosters.find({
-    typeGift: {
-      $eq: 'gift'
-    }
-  })
-    .sort({ _id: -1 })
-    .limit(120);
-
-  res.status(200).render('gift', {
-    title: 'gift',
-    gift
-  });
-});
-
-exports.getChashn = catchAsync(async (req, res, next) => {
-  const chashn = await AllPosters.find({
-    typeChashn: {
-      $eq: 'chashn'
-    }
-  })
-    .sort({ _id: -1 })
-    .limit(120);
-
-  res.status(200).render('chashn', {
-    title: 'chashn',
-    chashn
-  });
-});
-
-exports.getSeries = catchAsync(async (req, res, next) => {
-  const series = await AllPosters.find({
-    typeSeries: {
-      $eq: 'series'
-    }
-  })
-    .sort({ _id: -1 })
-    .limit(120);
-
-  res.status(200).render('series', {
-    title: 'series',
-    series
-  });
-});
-
-exports.getChamkakan = catchAsync(async (req, res, next) => {
-  const chamkakan = await AllPosters.find({
-    typeChamkakan: {
-      $eq: 'chamkakan'
-    }
-  })
-    .sort({ _id: -1 })
-    .limit(120);
-
-  res.status(200).render('chamkakan', {
-    title: 'chamkakan',
-    chamkakan
-  });
-});
-
-exports.getFormProfile = catchAsync(async (req, res, next) => {
-  res.status(200).render('profileForm', {
-    title: 'profileForm'
-  });
-});
-
-exports.getActor = catchAsync(async (req, res, next) => {
-  const actor = await AllPosters.find({
-    typeActor: {
-      $eq: 'actor'
-    }
-  })
-    .sort({ _id: -1 })
-    .limit(120);
-
-  res.status(200).render('actor', {
-    title: 'actor',
-    actor
-  });
-});
-
-exports.createPoster = catchAsync(async (req, res, next) => {
-  const doc = await AllPosters.create(req.body);
-
-  res.status(201).json({
-    status: 'success',
-    data: {
-      data: doc
-    }
-  });
-});
-
-exports.search = catchAsync(async (req, res, next) => {
-  const regex = new RegExp(`${req.query.dsearch}`, 'gi');
-  const searchFor = req.query.dsearch;
-  const findRes = await AllPosters.find({
-    title: { $regex: regex }
-  }).limit(14);
-
-  console.log(findRes);
-
-  res.status(200).render('allPosters', {
-    title: 'all',
-    all: findRes,
-    search: searchFor
-  });
-});
 // to change your remote to other existing remote using this steps
 // git remote -v
 // git remote set-url origin https://github.com/mohamednazm-web/tulibcinama.git

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="col-md-12 text-right">
+        <a href="/" type="button" class="btn btn-primary" style="margin-top: -10rem;">Go to home page</a>
+    </div>
+    <h1>Upload Image For Product</h1>
+    <form action="/uploadphoto" enctype="multipart/form-data" method="POST">
+        <input type="file" name="myImage" accept="image/*">
+        <input type="submit" value="Upload Photo">
+    </form>
+    <h1>Upload Image For Background</h1>
+    <form action="/backgroundPhoto" enctype="multipart/form-data" method="POST">
+        <input type="file" name="myImage" accept="image/*">
+        <input type="submit" value="Upload Photo">
+    </form>
+    <hr>
+    <hr>
+    <h1>SUB IMAGE 1</h1>
+    <form action="/subImages" enctype="multipart/form-data" method="POST">
+        <input type="file" name="myImage" accept="image/*">
+        <input type="submit" value="Upload Photo">
+    </form>
+    <h1>SUB IMAGE 2</h1>
+    <form action="/subImages" enctype="multipart/form-data" method="POST">
+        <input type="file" name="myImage" accept="image/*">
+        <input type="submit" value="Upload Photo">
+    </form>
+    <h1>SUB IMAGE 3</h1>
+    <form action="/subImages" enctype="multipart/form-data" method="POST">
+        <input type="file" name="myImage" accept="image/*">
+        <input type="submit" value="Upload Photo">
+    </form>
+    <h1>SUB IMAGE 4</h1>
+    <form action="/subImages" enctype="multipart/form-data" method="POST">
+        <input type="file" name="myImage" accept="image/*">
+        <input type="submit" value="Upload Photo">
+    </form>
+    <hr>
+    <h1>FILE SET UP</h1>
+    <form action="/fileSetUp" enctype="multipart/form-data" method="POST">
+        <input type="file" name="myImage">
+        <input type="submit" value="Upload File">
+    </form>
+</body>
+
+</html>

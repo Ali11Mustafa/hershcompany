@@ -1,64 +1,44 @@
 <div class="featured-product-section section-bg-tb pt-80 pb-55">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="section-title text-left mb-20">
-          <h2 class="uppercase">new products</h2>
-          <h6>
-            There are many variations of passages of brands available,
-          </h6>
-        </div>
-      </div>
-    </div>
-    <div class="featured-product">
-      <div class="row active-featured-product slick-arrow-2">
-        <!-- product-item start -->
-        <% allProducts.forEach(function(product) { %>
-        <div class="col-lg-12">
-          <div class="product-item product-item-2">
-            <div class="product-img">
-              <a href="single-product.html">
-                <img src="img/product-2/1.jpg" alt="" />
-              </a>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title text-left mb-20">
+                    <h2 class="uppercase">new products</h2>
+                    <h6>
+                        There are many variations of passages of brands available,
+                    </h6>
+                </div>
             </div>
-            <div class="product-info">
-              <h6 class="product-title">
-                <a href="single-product.html"><%=product.name %></a>
-              </h6>
-              <h6 class="brand-name"><%=product.brandName %></h6>
-              <h3 class="pro-price"><%=product.price %></h3>
-            </div>
-            <ul class="action-button">
-              <li>
-                <a href="#" title="Wishlist"
-                  ><i class="zmdi zmdi-favorite"></i
-                ></a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  data-toggle="modal"
-                  data-target="#productModal"
-                  title="Quickview"
-                  ><i class="zmdi zmdi-zoom-in"></i
-                ></a>
-              </li>
-              <li>
-                <a href="#" title="Compare"
-                  ><i class="zmdi zmdi-refresh"></i
-                ></a>
-              </li>
-              <li>
-                <a href="#" title="Add to cart"
-                  ><i class="zmdi zmdi-shopping-cart-plus"></i
-                ></a>
-              </li>
-            </ul>
-          </div>
         </div>
-        <% }); %>
-        <!-- product-item end -->
-      </div>
+        <div class="featured-product">
+            <div class="row active-featured-product slick-arrow-2">
+                <!-- product-item start -->
+                <% featuredProducts.forEach(function(product) { %>
+                    <div class="col-lg-12">
+                        <div class="product-item product-item-2">
+                            <div class="new-product-img">
+                                <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories._id %>">
+                                    <img src="uploads/product/<%= product.image[0]%>" alt=""/>
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <h6 class="product-title">
+                                    <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories._id %>">
+                                        <%=product.name %>
+                                    </a>
+                                </h6>
+                                <h6 class="brand-name">
+                                    <%=product.brandName %>
+                                </h6>
+                                <h3 class="pro-price">
+                                    <%=product.price %>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                        <!-- product-item end -->
+            </div>
+        </div>
     </div>
-  </div>
 </div>

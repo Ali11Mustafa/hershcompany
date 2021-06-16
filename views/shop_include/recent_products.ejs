@@ -1,0 +1,24 @@
+<aside class="widget widget-product box-shadow">
+    <h6 class="widget-title border-left mb-20">recent products</h6>
+    <!-- product-item start -->
+    <% recentProducts.forEach(function(product) { %>
+        <div class="product-item">
+            <div class="product-img">
+                <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories._id %>">
+                    <img src="/uploads/product/<%= product.image %>" alt="" />
+                </a>
+            </div>
+            <div class="product-info">
+                <h6 class="product-title">
+                    <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories._id %>">
+                        <%= product.productName %>
+                    </a>
+                </h6>
+                <h3 class="pro-price">
+                    <%= product.price %>
+                </h3>
+            </div>
+        </div>
+        <% }); %>
+            <!-- product-item end -->
+</aside>

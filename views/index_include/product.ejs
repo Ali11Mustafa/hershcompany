@@ -1,235 +1,253 @@
 <div class="product-tab-section section-bg-tb pt-80 pb-55">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="section-title text-left mb-40">
-          <h2 class="uppercase">product list</h2>
-          <h6>
-            There are many variations of passages of brands available,
-          </h6>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-title text-left mb-40">
+                    <h2 class="uppercase">product list</h2>
+                    <h6>
+                        There are many variations of passages of brands available,
+                    </h6>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="product-tab pro-tab-menu text-right">
+                    <!-- Nav tabs -->
+                    <ul class="nav" style="margin-right: -1rem;">
+                        <li>
+                            <a class="active" href="#POS-system" data-toggle="tab">POS system</a>
+                        </li>
+                        <li>
+                            <a href="#Receipt-printer" data-toggle="tab">Receipt printer</a>
+                        </li>
+                        <li>
+                            <a href="#Barcode-Printers" data-toggle="tab">Barcode Printers</a>
+                        </li>
+                        <li>
+                            <a href="#Scanner" data-toggle="tab">Scanner</a>
+                        </li>
+                        <li>
+                            <a href="#wireless-calling" data-toggle="tab">Wireless Calling</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="product-tab pro-tab-menu text-right">
-          <!-- Nav tabs -->
-          <ul class="nav">
-            <li>
-              <a class="active" href="#popular-product" data-toggle="tab"
-                >Popular Products
-              </a>
-            </li>
-            <li>
-              <a href="#new-arrival" data-toggle="tab">New Arrival</a>
-            </li>
-            <li>
-              <a href="#best-seller" data-toggle="tab">Best Seller</a>
-            </li>
-            <li>
-              <a href="#special-offer" data-toggle="tab">Special Offer</a>
-            </li>
-          </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- POS-system start -->
+            <div id="POS-system" class="tab-pane active show">
+                <div class="row">
+                    <!-- product-item start -->
+                    <% posSystems.forEach(function(product) { %>
+                        <div class="col-lg-3 col-md-4">
+                            <div class="product-item">
+                                <div class="product-img">
+                                    <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories %>">
+                                        <img src="uploads/product/<%= product.image[0] %>" />
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h6 class="product-title">
+
+                                        <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories %>">
+                                            <%= product.productName %>
+                                        </a>
+                                    </h6>
+                                    <h3 class="pro-price">$
+                                        <%= product.price %>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                            <!-- product-item end -->
+                </div>
+            </div>
+            <!-- POS-system end -->
+            <!-- Receipt-printer start -->
+            <div id="Receipt-printer" class="tab-pane" role="tabpanel">
+                <div class="row">
+                    <!-- product-item start -->
+                    <% receiptPrinters.forEach(function(product) { %>
+                        <div class="col-lg-3 col-md-4">
+                            <div class="product-item">
+                                <div class="product-img">
+                                    <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories %>">
+                                        <img src="uploads/product/<%= product.image[0] %>" />
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h6 class="product-title">
+                                        <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories %>">
+                                            <%= product.productName %>
+                                        </a>
+                                    </h6>
+                                    <h3 class="pro-price">$
+                                        <%= product.price %>
+                                    </h3>
+                                    <ul class="action-button">
+                                        <li>
+                                            <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i
+                    ></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i
+                    ></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Compare"><i class="zmdi zmdi-refresh"></i
+                    ></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                            <!-- product-item end -->
+                </div>
+            </div>
+            <!-- Barcode-Printers start -->
+            <div id="Barcode-Printers" class="tab-pane" role="tabpanel">
+                <div class="row">
+                    <!-- product-item start -->
+                    <% barcodePrinters.forEach(function(product) { %>
+                        <div class="col-lg-3 col-md-4">
+                            <div class="product-item">
+                                <div class="product-img">
+                                    <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories %>">
+                                        <img src="uploads/product/<%= product.image[0] %>" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h6 class="product-title">
+                                        <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories %>">
+                                            <%= product.productName %>
+                                        </a>
+                                    </h6>
+                                    <h3 class="pro-price">
+                                        <%= product.price %>
+                                    </h3>
+                                    <ul class="action-button">
+                                        <li>
+                                            <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i
+                    ></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i
+                    ></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Compare"><i class="zmdi zmdi-refresh"></i
+                    ></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Add to cart"><i class="zmdi zmdi-shopping-cart-plus"></i
+                    ></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                            <!-- product-item end -->
+                </div>
+            </div>
+            <!-- Scanner start -->
+            <div id="Scanner" class="tab-pane" role="tabpanel">
+                <div class="row">
+                    <!-- product-item start -->
+                    <% scanners.forEach(function(product) { %>
+                        <div class="col-lg-3 col-md-4">
+                            <div class="product-item">
+                                <div class="product-img">
+                                    <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories %>">
+                                        <img src="uploads/product/<%= product.image[0] %>" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h6 class="product-title">
+                                        <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories %>">
+
+                                            <%= product.productName %>
+                                        </a>
+                                    </h6>
+                                    <h3 class="pro-price">
+                                        <%= product.price %>
+                                    </h3>
+                                    <ul class="action-button">
+                                        <li>
+                                            <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i
+                    ></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i
+                    ></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Compare"><i class="zmdi zmdi-refresh"></i
+                    ></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Add to cart"><i class="zmdi zmdi-shopping-cart-plus"></i
+                    ></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                            <!-- product-item end -->
+                </div>
+            </div>
+            <!-- Scanner end -->
+            <!-- wireless-calling start -->
+            <div id="wireless-calling" class="tab-pane" role="tabpanel">
+                <div class="row">
+                    <!-- product-item start -->
+                    <% wirelessCallingProducts.forEach(function(product) { %>
+                        <div class="col-lg-3 col-md-4">
+                            <div class="product-item">
+                                <div class="product-img">
+                                    <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories %>">
+                                        <img src="uploads/product/<%= product.image[0] %>" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h6 class="product-title">
+                                        <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories %>">
+
+                                            <%= product.productName %>
+                                        </a>
+                                    </h6>
+                                    <h3 class="pro-price">
+                                        <%= product.price %>
+                                    </h3>
+                                    <ul class="action-button">
+                                        <li>
+                                            <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i
+                    ></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i
+                    ></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Compare"><i class="zmdi zmdi-refresh"></i
+                    ></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Add to cart"><i class="zmdi zmdi-shopping-cart-plus"></i
+                    ></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                            <!-- product-item end -->
+                </div>
+            </div>
+            <!-- Scanner end -->
         </div>
-      </div>
     </div>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- popular-product start -->
-      <div id="popular-product" class="tab-pane active show">
-        <div class="row">
-          <!-- product-item start -->
-          <% populars.forEach(function(popular) { %>
-          <div class="col-lg-3 col-md-4">
-            <div class="product-item">
-              <div class="product-img">
-                <a href="/single_product">
-                  <!-- src=<%= popular.image %> -->
-                  <img src="img/product/12.jpg" />
-                </a>
-              </div>
-              <div class="product-info">
-                <h6 class="product-title">
-                  <a href="/single_product"><%= popular.productName %></a>
-                </h6>
-                <h3 class="pro-price">$ <%= popular.price %></h3>
-                <ul class="action-button">
-                  <li>
-                    <a href="#" title="Wishlist"
-                      ><i class="zmdi zmdi-favorite"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      data-toggle="modal"
-                      data-target="#productModal"
-                      title="Quickview"
-                      ><i class="zmdi zmdi-zoom-in"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="#" title="Compare"
-                      ><i class="zmdi zmdi-refresh"></i
-                    ></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <% }); %>
-          <!-- product-item end -->
-        </div>
-      </div>
-      <!-- popular-product end -->
-      <!-- new-arrival start -->
-      <div id="new-arrival" class="tab-pane" role="tabpanel">
-        <div class="row">
-          <!-- product-item start -->
-          <% newArrivals.forEach(function(newArrival) { %>
-          <div class="col-lg-3 col-md-4">
-            <div class="product-item">
-              <div class="product-img">
-                <a href="/single_product">
-                  <img src="img/product/12.jpg" />
-                </a>
-              </div>
-              <div class="product-info">
-                <h6 class="product-title">
-                  <a href="/single_product"><%= newArrival.productName %></a>
-                </h6>
-                <h3 class="pro-price">$ <%= newArrival.price %></h3>
-                <ul class="action-button">
-                  <li>
-                    <a href="#" title="Wishlist"
-                      ><i class="zmdi zmdi-favorite"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      data-toggle="modal"
-                      data-target="#productModal"
-                      title="Quickview"
-                      ><i class="zmdi zmdi-zoom-in"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="#" title="Compare"
-                      ><i class="zmdi zmdi-refresh"></i
-                    ></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <% }); %>
-          <!-- product-item end -->
-        </div>
-      </div>
-      <!-- best-seller start -->
-      <div id="best-seller" class="tab-pane" role="tabpanel">
-        <div class="row">
-          <!-- product-item start -->
-          <% bestSellers.forEach(function(bestSeller) { %>
-          <div class="col-lg-3 col-md-4">
-            <div class="product-item">
-              <div class="product-img">
-                <a href="single-product.html">
-                  <img src="img/product/12.jpg" alt="" />
-                </a>
-              </div>
-              <div class="product-info">
-                <h6 class="product-title">
-                  <a href="single-product.html"
-                    ><%= bestSeller.productName %></a
-                  >
-                </h6>
-                <h3 class="pro-price"><%= bestSeller.price %></h3>
-                <ul class="action-button">
-                  <li>
-                    <a href="#" title="Wishlist"
-                      ><i class="zmdi zmdi-favorite"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      data-toggle="modal"
-                      data-target="#productModal"
-                      title="Quickview"
-                      ><i class="zmdi zmdi-zoom-in"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="#" title="Compare"
-                      ><i class="zmdi zmdi-refresh"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="#" title="Add to cart"
-                      ><i class="zmdi zmdi-shopping-cart-plus"></i
-                    ></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <% }); %>
-          <!-- product-item end -->
-        </div>
-      </div>
-      <!-- special-offer start -->
-      <div id="special-offer" class="tab-pane" role="tabpanel">
-        <div class="row">
-          <!-- product-item start -->
-          <% specialOffers.forEach(function(specialOffer) { %>
-          <div class="col-lg-3 col-md-4">
-            <div class="product-item">
-              <div class="product-img">
-                <a href="single-product.html">
-                  <img src="img/product/12.jpg" alt="" />
-                </a>
-              </div>
-              <div class="product-info">
-                <h6 class="product-title">
-                  <a href="single-product.html"
-                    ><%= specialOffer.productName %></a
-                  >
-                </h6>
-                <h3 class="pro-price"><%= specialOffer.price %></h3>
-                <ul class="action-button">
-                  <li>
-                    <a href="#" title="Wishlist"
-                      ><i class="zmdi zmdi-favorite"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      data-toggle="modal"
-                      data-target="#productModal"
-                      title="Quickview"
-                      ><i class="zmdi zmdi-zoom-in"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="#" title="Compare"
-                      ><i class="zmdi zmdi-refresh"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="#" title="Add to cart"
-                      ><i class="zmdi zmdi-shopping-cart-plus"></i
-                    ></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <% }); %>
-          <!-- product-item end -->
-        </div>
-      </div>
-      <!-- special-offer end -->
-    </div>
-  </div>
 </div>

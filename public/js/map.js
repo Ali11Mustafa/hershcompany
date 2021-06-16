@@ -3,9 +3,9 @@
 
   function initialize() {
     var mapOptions = {
-      zoom: 15,
+      zoom: 25,
       scrollwheel: false,
-      center: new google.maps.LatLng(36.191315612861764, 44.004068294477634)
+      center: new google.maps.LatLng(36.191237, 44.004013)
     };
 
     var map = new google.maps.Map(

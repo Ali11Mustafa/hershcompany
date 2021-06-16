@@ -1,0 +1,22 @@
+[
+{
+    "name": "popular",
+    "products": [
+          {"_id": "5d51ea76f607f9339d5a76f1"}
+    ]
+},
+{
+    "name": "NewArrival",
+    "products": [
+        {
+          "_id": "5d51ea76f607f9339d5a76f2"
+        },
+        {
+          "_id": "5d51ea76f607f9339d5a76f3"
+        },
+        {
+          "_id":"5d51ea76f607f9339d5a76f4"
+        }
+    ]
+}
+]

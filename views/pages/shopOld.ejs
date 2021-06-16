@@ -1,0 +1,57 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <%- include('../single_product_include/head'); %>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+    <!-- Body main wrapper start -->
+    <div class="wrapper">
+
+        <!-- START HEADER AREA -->
+        <%- include('../partials/header'); %>
+            <!-- END HEADER AREA -->
+
+            <!-- BREADCRUMBS SETCTION START -->
+            <%- include('../shop_include/breadcrumbs'); %>
+                <!-- BREADCRUMBS SETCTION END -->
+
+                <!-- Start page content -->
+                <div id="page-content" class="page-wrapper section">
+
+                    <!-- SHOP SECTION START -->
+                    <%- include('../shop_include/shop_section'); %>
+                        <!-- SHOP SECTION END -->
+
+                </div>
+                <!-- End page content -->
+
+                <!-- START FOOTER AREA -->
+                <%- include('../partials/footer'); %>
+                    <!-- END FOOTER AREA -->
+                    <!-- Body main wrapper end -->
+
+
+                    <!-- Placed JS at the end of the document so the pages load faster -->
+
+                    <!-- jquery latest version -->
+                    <script src="js/vendor/jquery-3.1.1.min.js"></script>
+                    <!-- Popper js -->
+                    <script src="js/popper.min.js"></script>
+                    <!-- Bootstrap framework js -->
+                    <script src="js/bootstrap.min.js"></script>
+                    <!-- jquery.nivo.slider js -->
+                    <script src="lib/js/jquery.nivo.slider.js"></script>
+                    <!-- All js plugins included in this file. -->
+                    <script src="js/plugins.js"></script>
+                    <!-- Main js file that contents all jQuery plugins activation. -->
+                    <script src="js/main.js"></script>
+
+</body>
+
+</html>
