@@ -54,16 +54,22 @@
                                     <%= product.price %>
                                 </td>
                                 <td>
-                                    <%= product.description.substring(0, 100) %>
+                                    <% if(typeof product.description != "undefined" ) {%>
+                                        <%= product.description.substring(0, 100) %>
+                                            <% } %>
                                 </td>
                                 <td>
-                                    <%= product.information.substring(0, 100) %>
+                                    <% if(typeof product.information != "undefined" ) {%>
+                                        <%= product.information.substring(0, 100) %>
+                                            <% } %>
                                 </td>
                                 <td>
                                     <%= product.brandName %>
                                 </td>
                                 <td>
-                                    <%= product.categories.name %>
+                                    <% if(product.categories != null) {%>
+                                        <%= product.categories.name %>
+                                            <% } %>
                                 </td>
                                 <td>
                                     <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>

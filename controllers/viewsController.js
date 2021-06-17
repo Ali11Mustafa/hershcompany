@@ -8,7 +8,7 @@ const AppError = require('../utils/appError');
 exports.products = catchAsync(async(req, res) => {
     await Allviews.updateOne({ $inc: { homePageHasView: 1 } });
 
-    const featuredProduct = await Products.find({})
+    const featuredProduct = await Products.find({}).populate('categories')
         .sort({ _id: -1 })
         .limit(8);
 
