@@ -42,7 +42,7 @@ const importData = async() => {
         //validateBeforeSave: false
         //});
         //await AllViews.create(views);
-        await Product.create(products);
+        //await Product.create(products);
         await AllCategories.create(categories);
 
         console.log('Data successfully loaded!');
@@ -55,7 +55,7 @@ const importData = async() => {
 // DELETE ALL DATA FROM DB
 const deleteData = async() => {
     try {
-        await Product.deleteMany();
+        //await Product.deleteMany();
         await AllCategories.deleteMany();
 
         console.log('Data successfully deleted!');

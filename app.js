@@ -212,20 +212,6 @@ app.use(mongoSanitize()); // "email": {"$gt": ""}
 
 app.use(xss()); // html form attacks
 
-// Prevent parameter pollution
-// {{URL}}api/v1/tours?sort=duration&sort=price its work now
-// app.use(
-//     hpp({
-//         whitelist: [
-//             'duration',
-//             'ratingsAverage',
-//             'maxGroupSize',
-//             'difficulty',
-//             'price'
-//         ]
-//     })
-// );
-
 app.use(compression());
 
 // Body parser, reading data from body into req.body
@@ -264,14 +250,6 @@ app.get('/about', function(req, res) {
 app.get('/contact', function(req, res) {
     res.render('pages/contact');
 });
-
-// app.get('/single_product', function(req, res) {
-//   res.render('pages/single_product');
-// });
-
-// app.get('/admin', function(req, res) {
-//   res.render('pages/admin_dashboard');
-// });
 
 app.use('/', viewRouter);
 app.use('/admin_dashboard', adminDashboardRouter);

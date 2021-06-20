@@ -43,7 +43,11 @@
                             <div class="product-item">
                                 <div class="product-img">
                                     <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories %>">
-                                        <img src="uploads/product/<%= product.image[0] %>" />
+                                        <% if(product.idImage) { %>
+                                            <img src="<%= product.idImage %>" />
+                                            <% } else { %>
+                                                <img src="uploads/product/<%= product.image[0] %>" />
+                                                <% } %>
                                     </a>
                                 </div>
                                 <div class="product-info">

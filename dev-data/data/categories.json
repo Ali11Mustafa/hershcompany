@@ -1,22 +1,29 @@
-[
-{
-    "name": "popular",
-    "products": [
-          {"_id": "5d51ea76f607f9339d5a76f1"}
-    ]
-},
-{
-    "name": "NewArrival",
-    "products": [
-        {
-          "_id": "5d51ea76f607f9339d5a76f2"
-        },
-        {
-          "_id": "5d51ea76f607f9339d5a76f3"
-        },
-        {
-          "_id":"5d51ea76f607f9339d5a76f4"
-        }
-    ]
-}
+[{
+        "name": "posSystem",
+        "products": []
+    },
+    {
+        "name": "barcodePrinter",
+        "products": []
+    },
+    {
+        "name": "receiptPrinter",
+        "products": []
+    },
+    {
+        "name": "scanner",
+        "products": []
+    },
+    {
+        "name": "dummyProduct",
+        "products": []
+    },
+    {
+        "name": "specialProduct",
+        "products": []
+    },
+    {
+        "name": "wirelessCallingProduct",
+        "products": []
+    }
 ]
