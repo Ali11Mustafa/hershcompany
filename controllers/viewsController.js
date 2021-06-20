@@ -5,89 +5,88 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
 exports.products = catchAsync(async(req, res) => {
-    // await Allviews.updateOne({ $inc: { homePageHasView: 1 } });
+     await Allviews.updateOne({ $inc: { homePageHasView: 1 } });
 
-    // const featuredProduct = await Products.find({}).populate('categories')
-    //     .sort({ _id: -1 })
-    //     .limit(8);
+     const featuredProduct = await Products.find({}).populate('categories')
+         .sort({ _id: -1 })
+         .limit(8);
 
-    // const sliderProduct = await Products.find({}).populate('categories')
-    //     .sort({ _id: -1 })
-    //     .limit(3);
+     const sliderProduct = await Products.find({}).populate('categories')
+         .sort({ _id: -1 })
+         .limit(3);
 
-    // let posSystems;
-    // const posSystemCategorey = await Categories.find({
-    //     name: { $eq: 'posSystem' }
-    // }).populate('products');
-    // posSystemCategorey.forEach(function(categorey) {
-    //     posSystems = categorey.products
-    //         .reverse()
-    //         .slice(0, 8);
-    // });
+     let posSystems;
+     const posSystemCategorey = await Categories.find({
+         name: { $eq: 'posSystem' }
+     }).populate('products');
+     posSystemCategorey.forEach(function(categorey) {
+         posSystems = categorey.products
+             .reverse()
+             .slice(0, 8);
+     });
 
-    // let receiptPrinters;
-    // const receiptPrinterCategorey = await Categories.find({
-    //     name: { $eq: 'receiptPrinter' }
-    // }).populate('products');
-    // receiptPrinterCategorey.forEach(function(categorey) {
-    //     receiptPrinters = categorey.products.reverse().slice(0, 8);
-    // });
+     let receiptPrinters;
+     const receiptPrinterCategorey = await Categories.find({
+         name: { $eq: 'receiptPrinter' }
+     }).populate('products');
+     receiptPrinterCategorey.forEach(function(categorey) {
+         receiptPrinters = categorey.products.reverse().slice(0, 8);
+     });
 
-    // let barcodePrinters;
-    // const barcodePrinterCategorey = await Categories.find({
-    //     name: { $eq: 'barcodePrinter' }
-    // }).populate('products');
-    // barcodePrinterCategorey.forEach(function(categorey) {
-    //     barcodePrinters = categorey.products.reverse().slice(0, 8);
-    // });
+     let barcodePrinters;
+     const barcodePrinterCategorey = await Categories.find({
+         name: { $eq: 'barcodePrinter' }
+     }).populate('products');
+     barcodePrinterCategorey.forEach(function(categorey) {
+         barcodePrinters = categorey.products.reverse().slice(0, 8);
+     });
 
-    // let scanners;
-    // const scannerCategorey = await Categories.find({
-    //     name: { $eq: 'scanner' }
-    // }).populate('products');
-    // scannerCategorey.forEach(function(categorey) {
-    //     scanners = categorey.products.reverse().slice(0, 8);
-    // });
+     let scanners;
+     const scannerCategorey = await Categories.find({
+         name: { $eq: 'scanner' }
+     }).populate('products');
+     scannerCategorey.forEach(function(categorey) {
+         scanners = categorey.products.reverse().slice(0, 8);
+     });
 
-    // let dummyProducts;
-    // const dummyProductCategorey = await Categories.find({
-    //     name: { $eq: 'dummyProduct' }
-    // }).populate('products');
-    // dummyProductCategorey.forEach(function(categorey) {
-    //     dummyProducts = categorey.products.reverse().slice(0, 2);
-    // });
+     let dummyProducts;
+     const dummyProductCategorey = await Categories.find({
+         name: { $eq: 'dummyProduct' }
+     }).populate('products');
+     dummyProductCategorey.forEach(function(categorey) {
+         dummyProducts = categorey.products.reverse().slice(0, 2);
+     });
 
-    // let specialProducts;
-    // const specialProductCategorey = await Categories.find({
-    //     name: { $eq: 'specialProduct' }
-    // }).populate('products');
-    // specialProductCategorey.forEach(function(categorey) {
-    //     specialProducts = categorey.products.reverse().slice(0, 3);
-    // });
+     let specialProducts;
+     const specialProductCategorey = await Categories.find({
+         name: { $eq: 'specialProduct' }
+     }).populate('products');
+     specialProductCategorey.forEach(function(categorey) {
+         specialProducts = categorey.products.reverse().slice(0, 3);
+     });
 
-    // let wirelessCallingProducts;
-    // const wirelessCallingProductCategorey = await Categories.find({
-    //     name: { $eq: 'wirelessCallingProduct' }
-    // }).populate('products');
-    // wirelessCallingProductCategorey.forEach(function(categorey) {
-    //     wirelessCallingProducts = categorey.products.reverse().slice(0, 3);
-    // });
+     let wirelessCallingProducts;
+     const wirelessCallingProductCategorey = await Categories.find({
+         name: { $eq: 'wirelessCallingProduct' }
+     }).populate('products');
+     wirelessCallingProductCategorey.forEach(function(categorey) {
+         wirelessCallingProducts = categorey.products.reverse().slice(0, 3);
+     });
 
-    // console.log(scanners);
+     console.log(scanners);
 
-    // //const views = await Allviews.find({});
-    // res.status(200).render('pages/index', {
-    //     posSystems: posSystems,
-    //     receiptPrinters: receiptPrinters,
-    //     barcodePrinters: barcodePrinters,
-    //     scanners: scanners,
-    //     sliderProducts: sliderProduct,
-    //     featuredProducts: featuredProduct,
-    //     dummyProducts: dummyProducts,
-    //     specialProducts: specialProducts,
-    //     wirelessCallingProducts: wirelessCallingProducts
-    // });
-    res.render('pages/about')
+     //const views = await Allviews.find({});
+     res.status(200).render('pages/index', {
+         posSystems: posSystems,
+         receiptPrinters: receiptPrinters,
+         barcodePrinters: barcodePrinters,
+         scanners: scanners,
+         sliderProducts: sliderProduct,
+         featuredProducts: featuredProduct,
+         dummyProducts: dummyProducts,
+         specialProducts: specialProducts,
+         wirelessCallingProducts: wirelessCallingProducts
+     });
 });
 
 exports.adminDashboard = catchAsync(async(req, res, next) => {
