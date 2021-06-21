@@ -139,6 +139,8 @@ exports.sigleProduct = catchAsync(async(req, res, next) => {
 exports.search = catchAsync(async(req, res, next) => {
     const regex = new RegExp(`${req.query.dsearch}`, 'gi');
     const searchFor = req.query.dsearch;
+
+    
     const findRes = await Products.find({
         productName: { $regex: regex }
     }).populate('categories', 'name').limit(14);
