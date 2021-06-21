@@ -2304,5 +2304,13 @@ table {
     z-index: -1;
 }
 
+pre.justify {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 20px;
+    color: #686767;
+    margin-bottom: 15px;
+}
+
 
 /*================================================*/
