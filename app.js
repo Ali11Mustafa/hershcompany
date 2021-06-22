@@ -23,37 +23,37 @@ var imgSchema = mongoose.Schema({
 var image = mongoose.model("image", imgSchema);
 // SET STORAGE
 var storage = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, 'public/uploads/product')
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + '.jpg')
     }
 });
 
 var storage2 = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, 'public/uploads/background')
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + '.jpg')
     }
 });
 
 var storage3 = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, 'public/uploads/subImage')
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + '.jpg')
     }
 });
 
 var storage4 = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, 'public/fileSetUp')
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + '.zip')
     }
 });
@@ -71,7 +71,7 @@ app.get("/admin_dashboard/uploadImage", (req, res) => {
 
 
 app.get("/show", (req, res) => {
-    image.find().toArray(function(err, result) {
+    image.find().toArray(function (err, result) {
         const imgArray = result.map(element => element._id);
         console.log(imgArray);
         if (err) {
@@ -88,7 +88,7 @@ app.post("/uploadphoto", upload.single('myImage'), (req, res) => {
         contentType: req.file.mimetype,
         image: new Buffer(encode_img, 'base64')
     };
-    image.create(final_img, function(err, result) {
+    image.create(final_img, function (err, result) {
         if (err) {
             console.log(err);
         } else {
@@ -107,7 +107,7 @@ app.post("/backgroundPhoto", upload2.single('myImage'), (req, res) => {
         contentType: req.file.mimetype,
         image: new Buffer(encode_img, 'base64')
     };
-    image.create(final_img, function(err, result) {
+    image.create(final_img, function (err, result) {
         if (err) {
             console.log(err);
         } else {
@@ -126,7 +126,7 @@ app.post("/subImages", upload3.single('myImage'), (req, res) => {
         contentType: req.file.mimetype,
         image: new Buffer(encode_img, 'base64')
     };
-    image.create(final_img, function(err, result) {
+    image.create(final_img, function (err, result) {
         if (err) {
             console.log(err);
         } else {
@@ -145,7 +145,7 @@ app.post("/fileSetUp", upload4.single('myImage'), (req, res) => {
         contentType: req.file.mimetype,
         image: new Buffer(encode_img, 'base64')
     };
-    image.create(final_img, function(err, result) {
+    image.create(final_img, function (err, result) {
         if (err) {
             console.log(err);
         } else {
@@ -243,11 +243,11 @@ app.use((req, res, next) => {
 //   res.render('pages/index');
 // });
 
-app.get('/about', function(req, res) {
+app.get('/about', function (req, res) {
     res.render('pages/about');
 });
 
-app.get('/contact', function(req, res) {
+app.get('/contact', function (req, res) {
     res.render('pages/contact');
 });
 

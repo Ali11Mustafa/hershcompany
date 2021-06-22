@@ -4,7 +4,7 @@ const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const factory = require('./handlerFactory');
 
-exports.createProductWithAdminDashboard = catchAsync(async(req, res, next) => {
+exports.createProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     const newProduct = await Product.create(req.body);
 
     const doc = await Categories.updateMany({ _id: newProduct.categories }, { $push: { products: newProduct._id } });
@@ -16,7 +16,7 @@ exports.createProductWithAdminDashboard = catchAsync(async(req, res, next) => {
     }
 });
 
-exports.deleteProductWithAdminDashboard = catchAsync(async(req, res, next) => {
+exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     const _id = req.params.id;
     const product = await Product.findOne({ _id });
 
@@ -29,6 +29,68 @@ exports.deleteProductWithAdminDashboard = catchAsync(async(req, res, next) => {
     } else {
         res.redirect('/admin_dashboard'); // agadar ba pewista wa be agar na refersh nabitawa zor mwhima wakw framwork ish daka refersh daka
     }
+});
+
+exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
+    const id = req.params.id;
+    const {
+        productName,
+        sliderImage,
+        image,
+        subImage1,
+        subImage2,
+        subImage3,
+        subImage4,
+        backgroundImageForProduct,
+        categories,
+        description,
+        price,
+        time,
+        brandName,
+        information,
+        fileSetUp
+    } = req.body;
+
+    const updateProduct = await Product.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+    });
+
+    const oldCategoryId = updateProduct.categories._id;
+    console.log(oldCategoryId);
+
+
+
+    const doc = await Categories.updateOne(
+        {
+            products: {
+                _id: id
+            }
+        },
+        {
+            $set: {
+                productName: productName,
+                image: image,
+                subImage1: subImage1,
+                subImage2: subImage2,
+                subImage3: subImage3,
+                subImage4: subImage4,
+                time: time,
+                backgroundImageForProduct: backgroundImageForProduct,
+                description: description,
+                sliderImage: sliderImage,
+                categories: categories,
+                brandName: brandName,
+                information: information,
+                fileSetUp: fileSetUp,
+                price: price,
+            }
+        }
+    );
+
+
+    res.redirect('/admin_dashboard');
+
 });
 
 // exports.getProduct = factory.getOne(Product);

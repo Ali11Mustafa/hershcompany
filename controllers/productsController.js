@@ -38,84 +38,51 @@ exports.createProduct = catchAsync(async(req, res, next) => {
 });
 
 
-exports.createProductWithAdminDashboard = catchAsync(async(req, res, next) => {
-    const newProduct = await Product.create(product);
-    const doc = '';
-    if (newProduct) {
-        doc = await Categories.updateMany({ '_id': newProduct.categories }, { $push: { products: newProduct._id } });
-        res.redirect('/admin_dashboard');
-    } else if (!doc) {
-        console.log('here');
-        return next(new AppError('No document found with that ID', 404));
 
-    } else {
-        res.redirect('/admin_dashboard');
-    }
+
+exports.updateProductWithAdminDashboard = catchAsync(async(req, res, next) => {
+    const id = req.params.id;
+    //const product = await Product.findOne({ _id });
+    const {productName ,categories,description, price,brandName,information, fileSetUp} = req.body;
+    const updateProduct = await Product.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+    });
+
+    const oldCategoryId = updateProduct.categories._id;
+    console.log(oldCategoryId);
+
+    
+
+    const doc = await Categories.updateOne(
+        {
+            products: {
+                _id: id
+            }
+        },
+        {
+            $set: {
+                productName: productName,
+                description: description,
+                categories: categories,
+                brandName: brandName,
+                information: information,
+                fileSetUp: fileSetUp,
+                price: price,
+             }
+        }
+    );
+
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            newProduct: updateProduct,
+            newCategory: doc,
+        }
+    });
+
 });
-
-
-exports.deleteProductWithAdminDashboard = catchAsync(async(req, res, next) => {
-    const _id = req.params.id;
-    const product = await Product.findOne({ _id });
-
-    await product.remove();
-
-    const doc = await Categories.updateMany({ '_id': product.categories }, { $pull: { products: product._id } });
-
-    if (!doc) {
-        return next(new AppError('No document found with that ID', 404));
-    } else {
-        res.redirect('/admin_dashboard'); // agadar ba pewista wa be agar na refersh nabitawa zor mwhima wakw framwork ish daka refersh daka
-    }
-});
-
-
-// exports.updateProductWithAdminDashboard = catchAsync(async(req, res, next) => {
-//     const _id = req.params.id;
-//     //const { product } = req.body;
-//     const newProduct = new Product({
-//         productName: productName,
-//         categories: categories
-//     })
-
-//     const newProduct2 = await Product.create(newProduct);
-
-//     console.log(newProduct2)
-///const newCategories = product.categories || [];
-
-// const oldProduct = await Product.findOne({ _id });
-// const oldCategories = oldProduct.categories;
-
-// Object.assign(oldProduct, product);
-// const newProduct = await oldProduct.save();
-
-// const added = difference(newCategories, oldCategories);
-// const removed = difference(oldCategories, newCategories);
-// await Categories.updateMany({ '_id': added }, { $addToSet: { products: foundProduct._id } });
-// await Categories.updateMany({ '_id': removed }, { $pull: { products: foundProduct._id } });
-
-//     res.status(201).json({
-//         // 201 stands for to create new tour
-//         status: 'success',
-//         data: {
-//             data: newProduct2
-//         }
-//     });
-// });
-
-// function difference(A, B) {
-//     const arrA = Array.isArray(A) ? A.map(x => x.toString()) : [A.toString()];
-//     const arrB = Array.isArray(B) ? B.map(x => x.toString()) : [B.toString()];
-
-//     const result = [];
-//     for (const p of arrA) {
-//         if (arrB.indexOf(p) === -1) {
-//             result.push(p);
-//         }
-//     }
-
-//     return result;
-// }
 
 
 

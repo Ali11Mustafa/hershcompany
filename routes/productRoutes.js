@@ -10,8 +10,8 @@ router
 router
     .route('/:id')
     .get(productsController.getProduct)
-    .delete(productsController.deleteProduct);
-//.put(productsController.updateProductWithAdminDashboard);
+    .delete(productsController.deleteProduct)
+    .put(productsController.updateProductWithAdminDashboard);
 
 router
     .route('/recentProducts')
