@@ -2314,3 +2314,6 @@ pre.justify {
 
 
 /*================================================*/
+    form.form-horizontal {
+        padding: 7rem;
+    }       
