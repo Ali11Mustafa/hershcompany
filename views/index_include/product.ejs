@@ -57,9 +57,11 @@
                                             <%= product.productName %>
                                         </a>
                                     </h6>
-                                    <h3 class="pro-price">$
-                                        <%= product.price %>
-                                    </h3>
+                                    <% if(product.price != null) {%>   
+                                        <h3 class="pro-price">$
+                                            <%= product.price %>
+                                        </h3>
+                                    <% } %> 
                                 </div>
                             </div>
                         </div>
@@ -86,17 +88,19 @@
                                             <%= product.productName %>
                                         </a>
                                     </h6>
+                                    <% if(product.price != null) {%>   
                                     <h3 class="pro-price">$
                                         <%= product.price %>
                                     </h3>
+                                    <% } %> 
                                     <ul class="action-button">
                                         <li>
                                             <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i
-                    ></a>
+                                    ></a>
                                         </li>
                                         <li>
                                             <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i
-                    ></a>
+                                    ></a>
                                         </li>
                                         <li>
                                             <a href="#" title="Compare"><i class="zmdi zmdi-refresh"></i
@@ -128,9 +132,11 @@
                                             <%= product.productName %>
                                         </a>
                                     </h6>
-                                    <h3 class="pro-price">
+                                    <% if(product.price != null) {%>   
+                                    <h3 class="pro-price">$
                                         <%= product.price %>
                                     </h3>
+                                    <% } %> 
                                     <ul class="action-button">
                                         <li>
                                             <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i
@@ -175,9 +181,11 @@
                                             <%= product.productName %>
                                         </a>
                                     </h6>
-                                    <h3 class="pro-price">
+                                    <% if(product.price != null) {%>   
+                                    <h3 class="pro-price">$
                                         <%= product.price %>
                                     </h3>
+                                    <% } %> 
                                     <ul class="action-button">
                                         <li>
                                             <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i
@@ -223,9 +231,11 @@
                                             <%= product.productName %>
                                         </a>
                                     </h6>
-                                    <h3 class="pro-price">
+                                    <% if(product.price != null) {%>   
+                                    <h3 class="pro-price">$
                                         <%= product.price %>
                                     </h3>
+                                    <% } %> 
                                     <ul class="action-button">
                                         <li>
                                             <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i
