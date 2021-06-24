@@ -9,174 +9,94 @@ const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+
 
 const app = express();
 const fs = require("fs");
 const multer = require("multer");
-const mongoose = require("mongoose");
 
 
-//Schema
-var imgSchema = mongoose.Schema({
-    img: { data: Buffer, contentType: String }
-});
-var image = mongoose.model("image", imgSchema);
-// SET STORAGE
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/uploads/product')
+const fileStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        if (file.fieldname === "image") {
+            cb(null, 'images/product');
+        } else if (file.fieldname === "backgroundImageForProduct") {
+            cb(null, 'images/background');
+        } else if (file.fieldname === "sliderImage") {
+            cb(null, 'images/slider');
+        } else {
+            cb(null, 'images/subImage');
+        }
     },
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + '.jpg')
+    filename: (req, file, cb) => {
+        if (file.fieldname === "image") {
+            cb(null, `${new Date().toISOString().replace(/:/g, '-')}${file.originalname}`);
+        } else if (file.fieldname === "backgroundImageForProduct") {
+            cb(null, `${new Date().toISOString().replace(/:/g, '-')}${file.originalname}`);
+        } else if (file.fieldname === "sliderImage") {
+            cb(null, `${new Date().toISOString().replace(/:/g, '-')}${file.originalname}`);
+        } else {
+            cb(null, `${new Date().toISOString().replace(/:/g, '-')}${file.originalname}`);
+        }
     }
 });
 
-var storage2 = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/uploads/background')
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + '.jpg')
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
+        cb(null, true)
+    } else {
+        cb(null, false)
     }
-});
-
-var storage3 = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/uploads/subImage')
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + '.jpg')
-    }
-});
-
-var storage4 = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/fileSetUp')
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + '.zip')
-    }
-});
-
-var upload = multer({ storage: storage });
-var upload2 = multer({ storage: storage2 });
-var upload3 = multer({ storage: storage3 });
-var upload4 = multer({ storage: storage4 });
-
-
-
-app.get("/admin_dashboard/uploadImage", (req, res) => {
-    res.render("index");
-});
-
-
-app.get("/show", (req, res) => {
-    image.find().toArray(function (err, result) {
-        const imgArray = result.map(element => element._id);
-        console.log(imgArray);
-        if (err) {
-            return console.error(err);
-        }
-        res.send(imgArray)
-    });
-});
-
-app.post("/uploadphoto", upload.single('myImage'), (req, res) => {
-    var img = fs.readFileSync(req.file.path);
-    var encode_img = img.toString('base64');
-    var final_img = {
-        contentType: req.file.mimetype,
-        image: new Buffer(encode_img, 'base64')
-    };
-    image.create(final_img, function (err, result) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(result.img.Buffer);
-            console.log("Saved To database");
-            res.contentType(final_img.contentType);
-            res.send(final_img.image);
-        }
-    });
-});
-
-app.post("/backgroundPhoto", upload2.single('myImage'), (req, res) => {
-    var img = fs.readFileSync(req.file.path);
-    var encode_img = img.toString('base64');
-    var final_img = {
-        contentType: req.file.mimetype,
-        image: new Buffer(encode_img, 'base64')
-    };
-    image.create(final_img, function (err, result) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(result.img.Buffer);
-            console.log("Saved To database");
-            res.contentType(final_img.contentType);
-            res.send(final_img.image);
-        }
-    });
-});
-
-app.post("/subImages", upload3.single('myImage'), (req, res) => {
-    var img = fs.readFileSync(req.file.path);
-    var encode_img = img.toString('base64');
-    var final_img = {
-        contentType: req.file.mimetype,
-        image: new Buffer(encode_img, 'base64')
-    };
-    image.create(final_img, function (err, result) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(result.img.Buffer);
-            console.log("Saved To database");
-            res.contentType(final_img.contentType);
-            res.send(final_img.image);
-        }
-    });
-});
-
-app.post("/fileSetUp", upload4.single('myImage'), (req, res) => {
-    var img = fs.readFileSync(req.file.path);
-    var encode_img = img.toString('base64');
-    var final_img = {
-        contentType: req.file.mimetype,
-        image: new Buffer(encode_img, 'base64')
-    };
-    image.create(final_img, function (err, result) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(result.img.Buffer);
-            console.log("Saved To database");
-            res.contentType(final_img.contentType);
-            res.send(final_img.image);
-        }
-    });
-});
-
+};
 
 const AppError = require('./utils/appError');
-//const globalErrorHandler = require("./controllers/errorController");
-//const tourRouter = require("./routes/tourRoutes");
-//const userRouter = require("./routes/userRoutes");
-//const reviewRouter = require("./routes/reviewRoutes");
-//const bookingRouter = require("./routes/bookingRoutes");
 const viewRouter = require('./routes/viewRoutes');
 const productRouter = require('./routes/productRoutes');
 const categoreyRouter = require('./routes/categorieRoutes');
 const adminDashboardRouter = require('./routes/adminDashboardRoutes');
 const shopRouter = require('./routes/shopRoutes');
 
-//const uploadImageRoutes = require('./routes/uploadImageRoutes');
-// start express app
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).fields([
+    {
+        name: 'image',
+        maxCount: 1
+    },
+    {
+        name: 'backgroundImageForProduct',
+        maxCount: 1
+    },
+    {
+        name: 'sliderImage',
+        maxCount: 1
+    },
+    {
+        name: 'subImage1',
+        maxCount: 1
+    },
+    {
+        name: 'subImage2',
+        maxCount: 1
+    },
+    {
+        name: 'subImage3',
+        maxCount: 1
+    },
+    {
+        name: 'subImage4',
+        maxCount: 1
+    }
+]));
+
+// reference for image uploading....
+
+// Serving static files
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.enable('trust proxy');
 
-// app.set('view engine', 'pug');
-// app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // 1) Global Middleware
@@ -186,8 +106,6 @@ app.use(cors());
 app.options('*', cors());
 //app.options('/api/v1/tours/:id', cors());
 
-// Serving static files
-app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use(helmet());
 
@@ -259,16 +177,6 @@ app.use('/api/v1/categories', categoreyRouter);
 //app.use('/api/v1/shop', shopRouter);
 
 app.all('*', (req, res, next) => {
-    /* res.status(404).json({
-       status: 'fail',
-       message: `Can not find ${req.originalUrl} on this server!`
-     }); */
-    /*
-    const err = new Error(`Can not find ${req.originalUrl} on this server!`);
-    err.status = 'fail';
-    err.statusCode = 404;
-
-    next(err);*/
     next(new AppError(`Can not find ${req.originalUrl} on this server!`, 404));
 });
 

@@ -51,43 +51,43 @@
                                                 <div class="col-lg-5">
                                                     <div class="imgs-zoom-area">
                                                         <% if(product[0].image != null) { %>
-                                                            <img id="zoom_03" src="uploads/product/<%= product[0].image[0]%>" data-zoom-image="uploads/product/<%= product[0].image[0]%>" alt="" />
+                                                            <img id="zoom_03" src="/<%= product[0].image[0]%>" data-zoom-image="/<%= product[0].image[0]%>" alt="" />
                                                             <% } %>
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
                                                                         <div id="gallery_01" class="carousel-btn slick-arrow-3 mt-30">
                                                                             <div class="p-c">
                                                                                 <% if(product[0].subImage1 != null) { %>
-                                                                                    <a href="#" data-image="uploads/subImage/<%= product[0].subImage1[0]%>" data-zoom-image="uploads/subImage/<%= product[0].subImage1[0]%>">
-                                                                                    <img class="zoom_03" src="uploads/subImage/<%= product[0].subImage1[0]%>" alt="">
+                                                                                    <a href="#" data-image="/<%= product[0].subImage1[0]%>" data-zoom-image="/<%= product[0].subImage1[0]%>">
+                                                                                    <img class="zoom_03" src="/<%= product[0].subImage1[0]%>" alt="">
                                                                                 </a>
                                                                                     <% } %>
                                                                             </div>
                                                                             <div class="p-c">
                                                                                 <% if(product[0].subImage2 != null) { %>
-                                                                                    <a href="#" data-image="uploads/subImage/<%= product[0].subImage2[0]%>" data-zoom-image="uploads/subImage/<%= product[0].subImage2[0]%>">
-                                                                                    <img class="zoom_03" src="uploads/subImage/<%= product[0].subImage2[0]%>" alt="">
+                                                                                    <a href="#" data-image="/<%= product[0].subImage2[0]%>" data-zoom-image="/<%= product[0].subImage2[0]%>">
+                                                                                    <img class="zoom_03" src="/<%= product[0].subImage2[0]%>" alt="">
                                                                                 </a>
                                                                                     <% } %>
                                                                             </div>
                                                                             <div class="p-c">
                                                                                 <% if(product[0].subImage3 != null) { %>
-                                                                                    <a href="#" data-image="uploads/subImage/<%= product[0].subImage3[0]%>" data-zoom-image="uploads/subImage/<%= product[0].subImage3[0]%>">
-                                                                                    <img class="zoom_03" src="uploads/subImage/<%= product[0].subImage3[0]%>" alt="">
+                                                                                    <a href="#" data-image="/<%= product[0].subImage3[0]%>" data-zoom-image="/<%= product[0].subImage3[0]%>">
+                                                                                    <img class="zoom_03" src="/<%= product[0].subImage3[0]%>" alt="">
                                                                                 </a>
                                                                                     <% } %>
                                                                             </div>
                                                                             <div class="p-c">
                                                                                 <% if(product[0].subImage4 != null) { %>
-                                                                                    <a href="#" data-image="uploads/subImage/<%= product[0].subImage4[0]%>" data-zoom-image="uploads/subImage/<%= product[0].subImage4[0]%>">
-                                                                                    <img class="zoom_03" src="uploads/subImage/<%= product[0].subImage4[0]%>" alt="">
+                                                                                    <a href="#" data-image="/<%= product[0].subImage4[0]%>" data-zoom-image="/<%= product[0].subImage4[0]%>">
+                                                                                    <img class="zoom_03" src="/<%= product[0].subImage4[0]%>" alt="">
                                                                                 </a>
                                                                                     <% } %>
                                                                             </div>
                                                                             <div class="p-c">
                                                                                 <% if(product[0].subImage4 != null) { %>
-                                                                                    <a href="#" data-image="uploads/subImage/<%= product[0].subImage4[0]%>" data-zoom-image="uploads/subImage/<%= product[0].subImage4[0]%>">
-                                                                                    <img class="zoom_03" src="uploads/subImage/<%= product[0].subImage4[0]%>" alt="">
+                                                                                    <a href="#" data-image="/<%= product[0].subImage4[0]%>" data-zoom-image="/<%= product[0].subImage4[0]%>">
+                                                                                    <img class="zoom_03" src="/<%= product[0].subImage4[0]%>" alt="">
                                                                                 </a>
                                                                                     <% } %>
                                                                             </div>
@@ -186,7 +186,7 @@
                                                         <div class="product-item">
                                                             <div class="product-img">
                                                                 <a href="/single_product?id=<%= relatedProduct._id %>&categoreyId=<%= relatedProduct.categories._id %>">
-                                                                    <img src="uploads/product/<%= relatedProduct.image[0]%>" alt="" />
+                                                                    <img src="/<%= relatedProduct.image[0]%>" alt="" />
                                                                 </a>
                                                             </div>
                                                             <div class="product-info">

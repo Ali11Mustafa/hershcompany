@@ -5,7 +5,7 @@ const AppError = require('./../utils/appError');
 const factory = require('./handlerFactory');
 
 // Get Recent Products for shop
-exports.getRecentProducts = catchAsync(async(req, res, next) => {
+exports.getRecentProducts = catchAsync(async (req, res, next) => {
 
     const products = await Product.find().populate('categories').sort({ _id: -1 }).limit(3); //-_id
 
@@ -22,7 +22,7 @@ exports.getRecentProducts = catchAsync(async(req, res, next) => {
 });
 
 
-exports.createProduct = catchAsync(async(req, res, next) => {
+exports.createProduct = catchAsync(async (req, res, next) => {
 
     const newProduct = await Product.create(req.body);
 
@@ -40,10 +40,10 @@ exports.createProduct = catchAsync(async(req, res, next) => {
 
 
 
-exports.updateProductWithAdminDashboard = catchAsync(async(req, res, next) => {
+exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     const id = req.params.id;
     //const product = await Product.findOne({ _id });
-    const {productName ,categories,description, price,brandName,information, fileSetUp} = req.body;
+    const { productName, categories, description, price, brandName, information, fileSetUp } = req.body;
     const updateProduct = await Product.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true
@@ -52,7 +52,7 @@ exports.updateProductWithAdminDashboard = catchAsync(async(req, res, next) => {
     const oldCategoryId = updateProduct.categories._id;
     console.log(oldCategoryId);
 
-    
+
 
     const doc = await Categories.updateOne(
         {
@@ -69,7 +69,7 @@ exports.updateProductWithAdminDashboard = catchAsync(async(req, res, next) => {
                 information: information,
                 fileSetUp: fileSetUp,
                 price: price,
-             }
+            }
         }
     );
 

@@ -11,5 +11,4 @@ router.get('/single_product', viewsController.sigleProduct);
 router.get('/search', viewsController.search);
 router.get('/shop', viewsController.shop);
 
-
 module.exports = router;

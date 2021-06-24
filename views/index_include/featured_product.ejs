@@ -13,7 +13,22 @@
         <div class="featured-product">
             <div class="row active-featured-product slick-arrow-2">
                 <!-- product-item start -->
-
+                <!-- <% featuredProducts.forEach(function(product) { %>
+                <div class="col-lg-12">
+                    <div class="product-item">
+                        <div class="product-img">
+                            <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories %>">
+                                <img src="/<%= product.image[0] %>" alt=""/>
+                            </a>
+                        </div>
+                        <div class="product-info">
+                            <h6 class="product-title">
+                                <a href="/single_product?id=<%= product._id %>&categoreyId=<%= product.categories %>"><%= product.productName %></a>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+                <% }); %> -->
                 <!-- product-item end -->
             </div>
         </div>
