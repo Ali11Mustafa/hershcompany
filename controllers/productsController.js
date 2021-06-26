@@ -38,8 +38,6 @@ exports.createProduct = catchAsync(async (req, res, next) => {
 });
 
 
-
-
 exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     const id = req.params.id;
     //const product = await Product.findOne({ _id });
@@ -51,8 +49,6 @@ exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
 
     const oldCategoryId = updateProduct.categories._id;
     console.log(oldCategoryId);
-
-
 
     const doc = await Categories.updateOne(
         {
@@ -72,8 +68,6 @@ exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
             }
         }
     );
-
-
     res.status(200).json({
         status: 'success',
         data: {
@@ -81,7 +75,6 @@ exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
             newCategory: doc,
         }
     });
-
 });
 
 

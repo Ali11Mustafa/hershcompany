@@ -10,5 +10,7 @@ router.get('/admin_dashboard/update-product/:id', viewsController.updateProductW
 router.get('/single_product', viewsController.sigleProduct);
 router.get('/search', viewsController.search);
 router.get('/shop', viewsController.shop);
+router.get('/500', viewsController.error500);
+router.get('/404', viewsController.error404);
 
 module.exports = router;

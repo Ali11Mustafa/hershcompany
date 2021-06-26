@@ -1,18 +1,24 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="./style.css">
 <!------ Include the above in your HEAD tag ---------->
-<form class="form-horizontal" action="/admin_dashboard" method="post" enctype="multipart/form-data" style="padding: 9rem;">
+<form class="form-horizontal" action="/admin_dashboard" method="post" enctype="multipart/form-data" style="padding: 9rem;" id="cpa-form">
 
     <fieldset>
         <!-- Form Name -->
+        <% if (errorMessage) { %>
+            <div class="user-message user-message--error">
+                <%= errorMessage %>
+            </div>
+        <% } %>
         <legend>ADD PRODUCTS</legend>
         <a href="/admin_dashboard">got admin dashboard</a>
         <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="product_name">PRODUCT NAME</label>
             <div class="col-md-4">
-                <input id="product_name" name="productName" placeholder="PRODUCT NAME" class="form-control input-md"  type="text">
+                <input id="product_name" name="productName" placeholder="PRODUCT NAME" class="form-control input-md"  type="text" required>
             </div>
         </div>
 
@@ -20,7 +26,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="product_description">PRODUCT DESCRIPTION</label>
             <div class="col-md-4">
-                <textarea class="form-control" id="product_description" name="description"></textarea>
+                <textarea class="form-control" id="product_description" name="description" required></textarea>
             </div>
         </div>
 
@@ -40,7 +46,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="available_quantity">PRODUCT PRICE</label>
             <div class="col-md-4">
-                <input id="available_quantity" name="price" placeholder="AVAILABLE QUANTITY" class="form-control input-md"  type="number">
+                <input id="available_quantity" name="price" placeholder="AVAILABLE QUANTITY" class="form-control input-md"  type="number" required>
             </div>
         </div>
 
@@ -48,7 +54,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="product_weight">PRODUCT BRAND</label>
             <div class="col-md-4">
-                <input id="product_weight" name="brandName" placeholder="PRODUCT BRAND" class="form-control input-md"  type="text">
+                <input id="product_weight" name="brandName" placeholder="PRODUCT BRAND" class="form-control input-md"  type="text" required>
             </div>
         </div>
 
@@ -56,7 +62,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="product_description">PRODUCT INFORMATION</label>
             <div class="col-md-4">
-                <textarea class="form-control" id="product_description" name="information"></textarea>
+                <textarea class="form-control" id="product_description" name="information" required></textarea>
             </div>
         </div>
 
@@ -64,14 +70,14 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="percentage_discount">PRODUCT FILE SETUP</label>
             <div class="col-md-4">
-                <input id="percentage_discount" name="fileSetUp" placeholder="PRODUCT FILE SETUP" class="form-control input-md"  type="text">
+                <input id="percentage_discount" name="fileSetUp" placeholder="PRODUCT FILE SETUP" class="form-control input-md"  type="text" required>
             </div>
         </div>
         <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="online_date">Create Date or Manual Date (date and time):</label>
             <div class="col-md-4">
-                <input type="datetime-local" id="online_date" name="time" placeholder="ONLINE DATE" class="form-control input-md"  type="text">
+                <input type="datetime-local" id="online_date" name="time" placeholder="ONLINE DATE" class="form-control input-md"  type="text" required>
             </div>
         </div>
         <!-- Text input-->
@@ -80,20 +86,20 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="image">PRODUCT IMAGE(263 * 292)</label>
                 <div class="col-md-4">
-                    <input id="image" name="image" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file">
+                    <input id="image" name="image" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-4 control-label" for="sliderImage">SLIDER IMAGE(1479 * 211)</label>
                 <div class="col-md-4">
-                    <input id="sliderImage" name="sliderImage" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file">
+                    <input id="sliderImage" name="sliderImage" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" required>
                 </div>
             </div>
             <!-- File Button -->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="backgroundImageForProduct">PRODUCT BACKGROUND IMAGE(1479 * 211)</label>
                 <div class="col-md-4">
-                    <input id="backgroundImageForProduct" name="backgroundImageForProduct" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file">
+                    <input id="backgroundImageForProduct" name="backgroundImageForProduct" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" required>
                 </div>
             </div>
             <!-- Button -->
@@ -102,7 +108,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="subImage1">SUB IMAGE 1</label>
                 <div class="col-md-4">
-                    <input id="subImage1" name="subImage1" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file">
+                    <input id="subImage1" name="subImage1" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" required>
                 </div>
             </div>
             <!-- Button -->
@@ -110,7 +116,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="subImage2">SUB IMAGE 2</label>
                 <div class="col-md-4">
-                    <input id="subImage2" name="subImage2" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file">
+                    <input id="subImage2" name="subImage2" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" required>
                 </div>
             </div>
             <!-- Button -->
@@ -118,7 +124,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="subImage3">SUB IMAGE 3</label>
                 <div class="col-md-4">
-                    <input id="subImage3" name="subImage3" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file">
+                    <input id="subImage3" name="subImage3" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" required>
                 </div>
             </div>
             <!-- Button -->
@@ -126,7 +132,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="subImage4">SUB IMAGE 4</label>
                 <div class="col-md-4">
-                    <input id="subImage4" name="subImage4" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file">
+                    <input id="subImage4" name="subImage4" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" required>
                 </div>
             </div>
             <!-- Button -->

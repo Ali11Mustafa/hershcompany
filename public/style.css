@@ -2317,3 +2317,20 @@ pre.justify {
     form.form-horizontal {
         padding: 7rem;
     }       
+
+
+.user-message {
+    margin: auto;
+    width: 48%;
+    border: 1px solid #4771fa;
+    padding: 0.5rem;
+    border-radius: 3px;
+    background: #b9c9ff;
+    text-align: center;
+}
+
+.user-message--error {
+    border-color: red;
+    background: rgb(255, 176, 176);
+    color: red;
+}

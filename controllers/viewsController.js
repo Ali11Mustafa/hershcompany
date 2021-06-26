@@ -104,7 +104,8 @@ exports.addProductWithAdminDashboard = catchAsync(async (req, res, next) => {
 
     // SEND RESPONSE
     res.status(200).render('admin_dashboard/addProduct', {
-        categories
+        categories,
+        errorMessage: ''
     });
 });
 
@@ -139,7 +140,9 @@ exports.sigleProduct = catchAsync(async (req, res, next) => {
             $eq: id
         }
     }).populate('categories', 'name');
-    console.log(getOneProduct);
+    // console.log(getOneProduct);
+
+
 
     const productsByCategory = await Products.find({
         categories: { _id: categoreyId }
@@ -239,6 +242,14 @@ exports.shop = catchAsync(async (req, res, next) => {
     });
 });
 
+
+exports.error500 = catchAsync(async (req, res, next) => {
+    res.status(500).render('pages/500');
+});
+
+exports.error404 = catchAsync(async (req, res, next) => {
+    res.status(404).render('pages/404');
+});
 
 
 // to change your remote to other existing remote using this steps

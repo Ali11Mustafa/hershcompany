@@ -2,11 +2,12 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-<form class="form-horizontal" action="/admin_dashboard/update/<%=product[0]._id%>" method="post" enctype="multipart/form-data" style="padding: 9rem;">
+<% if(locals.product) { %>
 
+<form class="form-horizontal" action="/admin_dashboard/update/<%=product[0]._id%>" method="post" style="padding: 9rem;">
     <fieldset>
         <!-- Form Name -->
-        <legend>ADD PRODUCTS</legend>
+        <legend>UPDATE PRODUCTS</legend>
         <a href="/admin_dashboard">got admin dashboard</a>
         <!-- Text input-->
         <div class="form-group">
@@ -25,7 +26,7 @@
         </div>
 
         <!-- Select Basic -->
-        <!-- <div class="form-group">
+        <div class="form-group">
             <label class="col-md-4 control-label" for="product_categorie">PRODUCT CATEGORY</label>
             <div class="col-md-4">
                 <select name="categories" id="category" class="form-control">
@@ -34,7 +35,7 @@
                     <% }); %>
                     </select>
             </div>
-        </div> -->
+        </div>
 
         <!-- Text input-->
         <div class="form-group">
@@ -67,6 +68,8 @@
                 <input id="percentage_discount" name="fileSetUp" placeholder="PRODUCT FILE SETUP" class="form-control input-md"  type="text" value="<%= product[0].fileSetUp%>">
             </div>
         </div>
+
+
         <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="online_date">Create Date or Manual Date (date and time):</label>
@@ -74,67 +77,76 @@
                 <input type="datetime-local" id="online_date" name="time" placeholder="ONLINE DATE" class="form-control input-md"  type="text" value="<%= product[0].time%>">
             </div>
         </div>
+
         <!-- Text input-->
         <div class="form-group">
             <!-- File Button -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="image">PRODUCT IMAGE(263 * 292)</label>
+                <label class="col-md-4 control-label" for="filebutton">PRODUCT IMAGE(263 * 292)</label>
                 <div class="col-md-4">
-                    <input id="image" name="image" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="/<%=product[0].image%>">
+                    <input id="percentage_discount" name="image" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="text" value="<%= product[0].image%>">
+                    <a href="/admin_dashboard/uploadImage" target="_blank" class="col-md-4 control-label">Upload Image</a>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-4 control-label" for="sliderImage">SLIDER IMAGE(1479 * 211)</label>
+                <label class="col-md-4 control-label" for="filebutton">SLIDER IMAGE(1479 * 211)</label>
                 <div class="col-md-4">
-                    <input id="sliderImage" name="sliderImage" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="<%= product[0].sliderImage%>">
+                    <input id="percentage_discount" name="sliderImage" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="text" value="<%= product[0].sliderImage%>">
+                    <a href="/admin_dashboard/uploadImage" target="_blank" class="col-md-4 control-label">Upload Image</a>
                 </div>
             </div>
             <!-- File Button -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="backgroundImageForProduct">PRODUCT BACKGROUND IMAGE(1479 * 211)</label>
+                <label class="col-md-4 control-label" for="filebutton">PRODUCT BACKGROUND IMAGE(1479 * 211)</label>
                 <div class="col-md-4">
-                    <input id="backgroundImageForProduct" name="backgroundImageForProduct" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="<%= product[0].backgroundImageForProduct%>">
+                    <input id="percentage_discount" name="backgroundImageForProduct" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="text" value="<%= product[0].backgroundImageForProduct%>">
+                    <a href="/admin_dashboard/uploadImage" target="_blank" class="col-md-4 control-label">Upload Image</a>
                 </div>
             </div>
             <!-- Button -->
             <hr>
             <!-- File Button -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="subImage1">SUB IMAGE 1</label>
+                <label class="col-md-4 control-label" for="filebutton">SUB IMAGE 1</label>
                 <div class="col-md-4">
-                    <input id="subImage1" name="subImage1" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="<%= product[0].subImage1%>">
+                    <input id="percentage_discount" name="subImage1" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="text" value="<%= product[0].subImage1%>">
+                    <a href="/admin_dashboard/uploadImage" target="_blank" class="col-md-4 control-label">Upload Image</a>
                 </div>
             </div>
             <!-- Button -->
             <!-- File Button -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="subImage2">SUB IMAGE 2</label>
+                <label class="col-md-4 control-label" for="filebutton">SUB IMAGE 2</label>
                 <div class="col-md-4">
-                    <input id="subImage2" name="subImage2" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="<%= product[0].subImage2%>">
+                    <input id="percentage_discount" name="subImage2" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="text" value="<%= product[0].subImage2%>">
+                    <a href="/admin_dashboard/uploadImage" target="_blank" class="col-md-4 control-label">Upload Image</a>
                 </div>
             </div>
             <!-- Button -->
             <!-- File Button -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="subImage3">SUB IMAGE 3</label>
+                <label class="col-md-4 control-label" for="filebutton">SUB IMAGE 3</label>
                 <div class="col-md-4">
-                    <input id="subImage3" name="subImage3" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="<%= product[0].subImage3%>">
+                    <input id="percentage_discount" name="subImage3" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="text" value="<%= product[0].subImage3%>">
+                    <a href="/admin_dashboard/uploadImage" target="_blank" class="col-md-4 control-label">Upload Image</a>
                 </div>
             </div>
             <!-- Button -->
             <!-- File Button -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="subImage4">SUB IMAGE 4</label>
+                <label class="col-md-4 control-label" for="filebutton">SUB IMAGE 4</label>
                 <div class="col-md-4">
-                    <input id="subImage4" name="subImage4" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="<%= product[0].subImage4%>">
+                    <input id="percentage_discount" name="subImage4" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="text" value="<%= product[0].subImage4%>">
+                    <a href="/admin_dashboard/uploadImage" target="_blank" class="col-md-4 control-label">Upload Image</a>
                 </div>
             </div>
             <!-- Button -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="singlebutton">ADDING PRODUCT</label>
+                <label class="col-md-4 control-label" for="singlebutton">UPDATING PRODUCT</label>
                 <div class="col-md-4">
                     <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary">SUBMIT</button>
                 </div>
             </div>
     </fieldset>
 </form>
+<% }%>
