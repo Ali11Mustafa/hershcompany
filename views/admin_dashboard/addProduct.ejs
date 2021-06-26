@@ -34,7 +34,8 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="product_categorie">PRODUCT CATEGORY</label>
             <div class="col-md-4">
-                <select name="categories" id="category" class="form-control">
+                <select name="categories" id="category" class="form-control" required>
+                    <option value="">choose a category</option>
                     <% categories.forEach(function(category) { %>
                         <option value="<%= category._id %>"><%= category.name %></option>
                     <% }); %>
