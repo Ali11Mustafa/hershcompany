@@ -94,6 +94,7 @@ exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     const _id = req.body.productId;
     const product = await Product.findOne({ _id });
 
+
     fileHelper.deleteFile(product.image);
     fileHelper.deleteFile(product.backgroundImageForProduct);
     fileHelper.deleteFile(product.sliderImage);
@@ -104,6 +105,7 @@ exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     await product.remove();
 
     const doc = await Categories.updateMany({ _id: product.categories }, { $pull: { products: product._id } });
+
 
     if (!doc) {
         return next(new AppError('No document found with that ID', 404));
