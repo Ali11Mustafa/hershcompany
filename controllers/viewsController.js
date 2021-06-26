@@ -140,7 +140,7 @@ exports.sigleProduct = catchAsync(async (req, res, next) => {
             $eq: id
         }
     }).populate('categories', 'name');
-    // console.log(getOneProduct);
+    console.log(getOneProduct);
 
 
 

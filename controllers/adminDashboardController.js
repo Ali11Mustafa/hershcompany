@@ -146,7 +146,7 @@ exports.updateProductWithAdminDashboard = async (req, res, next) => {
         backgroundImageForProductUrl = req.files['backgroundImageForProduct'][0].path;
     }
 
-    const categories = req.body.categories;
+    //const categories = req.body.categories;
     const description = req.body.description;
     const price = req.body.price;
     const time = req.body.time;
@@ -163,7 +163,7 @@ exports.updateProductWithAdminDashboard = async (req, res, next) => {
             product.brandName = brandName;
             product.information = information;
             product.fileSetUp = fileSetUp;
-            product.categories = categories;
+            //product.categories = categories;
             if (sliderImageUrl) {
                 fileHelper.deleteFile(product.sliderImage);
                 product.sliderImage = sliderImageUrl;
@@ -209,7 +209,7 @@ exports.updateProductWithAdminDashboard = async (req, res, next) => {
     let brandNameUpdate = '';
     let informationUpdate = '';
     let priceUpdate = '';
-    let categoriesUpdate = '';
+    //let categoriesUpdate = '';
     let timeUpdate = '';
     let fileSetUpUpdate = '';
 
@@ -227,7 +227,7 @@ exports.updateProductWithAdminDashboard = async (req, res, next) => {
             priceUpdate = product.price;
             informationUpdate = product.information;
             descriptionUpdate = product.description;
-            categoriesUpdate = product.categories;
+            //categoriesUpdate = product.categories;
             timeUpdate = product.timeUpdate;
             fileSetUpUpdate = product.fileSetUp;
         });
@@ -251,7 +251,7 @@ exports.updateProductWithAdminDashboard = async (req, res, next) => {
                 backgroundImageForProduct: backgroundImageForProductUpdate,
                 description: descriptionUpdate,
                 sliderImage: sliderImageUpdate,
-                categories: categoriesUpdate,
+                //categories: categoriesUpdate,
                 brandName: brandNameUpdate,
                 information: informationUpdate,
                 fileSetUp: fileSetUpUpdate,
