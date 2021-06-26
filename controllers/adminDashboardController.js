@@ -91,7 +91,7 @@ exports.createProductWithAdminDashboard = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
-    const _id = req.params.id;
+    const _id = req.body.productId;
     const product = await Product.findOne({ _id });
 
     fileHelper.deleteFile(product.image);

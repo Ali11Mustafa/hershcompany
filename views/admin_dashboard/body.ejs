@@ -73,7 +73,11 @@
                                 </td>
                                 <td>
                                     <a href="/admin_dashboard/update-product/<%=product._id%>" ><i class="material-icons" title="Edit">&#xE254;</i></a>
-                                    <a href="/admin_dashboard/delete/<%=product._id%>" onclick="return confirm('Are you sure to delete this record ?');" title="delete"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                                    <!-- <a href="/admin_dashboard/delete/<%=product._id%>" onclick="return confirm('Are you sure to delete this record ?');" title="delete"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a> -->
+                                    <form action="/admin_dashboard/delete-product" method="POST"  onclick="return confirm('Are you sure to delete this record ?');">
+                                        <input type="hidden" value="<%= product._id %>" name="productId">
+                                        <button class="btn" type="submit"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                             <% }); %>
