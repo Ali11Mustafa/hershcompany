@@ -108,10 +108,8 @@ exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
             fileHelper.deleteFile(product.subImage2);
             fileHelper.deleteFile(product.subImage3);
             fileHelper.deleteFile(product.subImage4);
-        }, 10000);
+        }, 15000);
     }
-
-
 
     const detailDelete = await product.remove();
 
@@ -123,8 +121,6 @@ exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
             res.redirect('/admin_dashboard');// agadar ba pewista wa be agar na refersh nabitawa zor mwhima wakw framwork ish daka refersh daka
         }
     }
-
-
 });
 
 
