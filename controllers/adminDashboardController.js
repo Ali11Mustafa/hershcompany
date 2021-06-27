@@ -102,6 +102,7 @@ exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
         fileHelper.deleteFile(product.subImage2);
         fileHelper.deleteFile(product.subImage3);
         fileHelper.deleteFile(product.subImage4);
+        res.redirect('/admin_dashboard');
     }
 
     const detailDelete = await product.remove();
@@ -111,7 +112,7 @@ exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
         if (!doc) {
             return next(new AppError('No document found with that ID', 404));
         } else {
-            res.redirect('/admin_dashboard'); // agadar ba pewista wa be agar na refersh nabitawa zor mwhima wakw framwork ish daka refersh daka
+            // agadar ba pewista wa be agar na refersh nabitawa zor mwhima wakw framwork ish daka refersh daka
         }
     }
 
