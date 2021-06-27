@@ -87,7 +87,6 @@ exports.createProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     } else {
         res.redirect('/admin_dashboard');
     }
-
 });
 
 
