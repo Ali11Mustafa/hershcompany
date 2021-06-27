@@ -90,20 +90,28 @@ exports.createProductWithAdminDashboard = catchAsync(async (req, res, next) => {
 
 });
 
+
 exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     const _id = req.body.productId;
     const product = await Product.findOne({ _id });
 
     if (product) {
-        fileHelper.deleteFile(product.image);
-        fileHelper.deleteFile(product.backgroundImageForProduct);
-        fileHelper.deleteFile(product.sliderImage);
-        fileHelper.deleteFile(product.subImage1);
-        fileHelper.deleteFile(product.subImage2);
-        fileHelper.deleteFile(product.subImage3);
-        fileHelper.deleteFile(product.subImage4);
-        res.redirect('/admin_dashboard');
+        deleteFileFunction();
     }
+
+    function deleteFileFunction() {
+        setTimeout(function () {
+            fileHelper.deleteFile(product.image);
+            fileHelper.deleteFile(product.backgroundImageForProduct);
+            fileHelper.deleteFile(product.sliderImage);
+            fileHelper.deleteFile(product.subImage1);
+            fileHelper.deleteFile(product.subImage2);
+            fileHelper.deleteFile(product.subImage3);
+            fileHelper.deleteFile(product.subImage4);
+        }, 10000);
+    }
+
+
 
     const detailDelete = await product.remove();
 
@@ -112,7 +120,7 @@ exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
         if (!doc) {
             return next(new AppError('No document found with that ID', 404));
         } else {
-            // agadar ba pewista wa be agar na refersh nabitawa zor mwhima wakw framwork ish daka refersh daka
+            res.redirect('/admin_dashboard');// agadar ba pewista wa be agar na refersh nabitawa zor mwhima wakw framwork ish daka refersh daka
         }
     }
 
