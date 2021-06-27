@@ -94,24 +94,28 @@ exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     const _id = req.body.productId;
     const product = await Product.findOne({ _id });
 
-
-    fileHelper.deleteFile(product.image);
-    fileHelper.deleteFile(product.backgroundImageForProduct);
-    fileHelper.deleteFile(product.sliderImage);
-    fileHelper.deleteFile(product.subImage1);
-    fileHelper.deleteFile(product.subImage2);
-    fileHelper.deleteFile(product.subImage3);
-    fileHelper.deleteFile(product.subImage4);
-    await product.remove();
-
-    const doc = await Categories.updateMany({ _id: product.categories }, { $pull: { products: product._id } });
-
-
-    if (!doc) {
-        return next(new AppError('No document found with that ID', 404));
-    } else {
-        res.redirect('/admin_dashboard'); // agadar ba pewista wa be agar na refersh nabitawa zor mwhima wakw framwork ish daka refersh daka
+    if (product) {
+        fileHelper.deleteFile(product.image);
+        fileHelper.deleteFile(product.backgroundImageForProduct);
+        fileHelper.deleteFile(product.sliderImage);
+        fileHelper.deleteFile(product.subImage1);
+        fileHelper.deleteFile(product.subImage2);
+        fileHelper.deleteFile(product.subImage3);
+        fileHelper.deleteFile(product.subImage4);
     }
+
+    const detailDelete = await product.remove();
+
+    if (detailDelete) {
+        const doc = await Categories.updateMany({ _id: product.categories }, { $pull: { products: product._id } });
+        if (!doc) {
+            return next(new AppError('No document found with that ID', 404));
+        } else {
+            res.redirect('/admin_dashboard'); // agadar ba pewista wa be agar na refersh nabitawa zor mwhima wakw framwork ish daka refersh daka
+        }
+    }
+
+
 });
 
 
