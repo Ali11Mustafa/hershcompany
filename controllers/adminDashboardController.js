@@ -105,7 +105,7 @@ exports.createProductWithAdminDashboard = catchAsync(async (req, res, next) => {
 });
 
 
-exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
+exports.deleteProductWithAdminDashboard = async (req, res, next) => {
     const _id = req.body.productId;
     const product = await Product.findOne({ _id });
 
@@ -116,6 +116,7 @@ exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     function deleteFileFunction() {
         setTimeout(function () {
             fileHelper.deleteFile(product.image);
+            fileHelper.deleteFile(product.fileSetUp);
             fileHelper.deleteFile(product.backgroundImageForProduct);
             fileHelper.deleteFile(product.sliderImage);
             fileHelper.deleteFile(product.subImage1);
@@ -135,11 +136,11 @@ exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
             res.redirect('/admin_dashboard');// agadar ba pewista wa be agar na refersh nabitawa zor mwhima wakw framwork ish daka refersh daka
         }
     }
-});
+};
 
 
 
-exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
+exports.updateProductWithAdminDashboard = (req, res, next) => {
     const id = req.params.id;
     const productName = req.body.productName;
     let fileSetUpUrl = '';
@@ -293,4 +294,4 @@ exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     if (doc) {
         res.redirect('/admin_dashboard');
     }
-});
+};
