@@ -123,7 +123,7 @@ exports.deleteProductWithAdminDashboard = async (req, res, next) => {
             fileHelper.deleteFile(product.subImage2);
             fileHelper.deleteFile(product.subImage3);
             fileHelper.deleteFile(product.subImage4);
-        }, 15000);
+        }, 5000);
     }
 
     const detailDelete = await product.remove();
@@ -140,7 +140,7 @@ exports.deleteProductWithAdminDashboard = async (req, res, next) => {
 
 
 
-exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
+exports.updateProductWithAdminDashboard = async (req, res, next) => {
     const id = req.params.id;
     const productName = req.body.productName;
     let fileSetUpUrl = '';
@@ -310,4 +310,4 @@ exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     if (doc) {
         res.redirect('/admin_dashboard');
     }
-});
+};
