@@ -48,7 +48,7 @@ exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     });
 
     const oldCategoryId = updateProduct.categories._id;
-    console.log(oldCategoryId);
+    //console.log(oldCategoryId);
 
     const doc = await Categories.updateOne(
         {

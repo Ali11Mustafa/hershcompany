@@ -103,6 +103,7 @@
                 <div class="col-md-4">
                     <input id="subImage1" name="subImage1" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="./<%= product[0].subImage1[0]%>">
                 </div>
+                <a href="/admin_dashboard/delete-sub-image1/<%=product[0]._id%>">delete</a>
             </div>
             <!-- Button -->
             <!-- File Button -->
@@ -132,7 +133,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="singlebutton">ADDING PRODUCT</label>
                 <div class="col-md-4">
-                    <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary">SUBMIT</button>
+                    <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary">SAVE CHANGES</button>
                 </div>
             </div>
     </fieldset>

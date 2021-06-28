@@ -34,7 +34,7 @@ const fs = require('fs')
 } */
 
 
-exports.createProductWithAdminDashboard = catchAsync(async (req, res, next) => {
+exports.createProductWithAdminDashboard = async (req, res, next) => {
     const productName = req.body.productName;
     const categories = req.body.categories;
     const description = req.body.description;
@@ -102,7 +102,7 @@ exports.createProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     } else {
         res.redirect('/admin_dashboard');
     }
-});
+};
 
 
 exports.deleteProductWithAdminDashboard = async (req, res, next) => {
@@ -135,6 +135,33 @@ exports.deleteProductWithAdminDashboard = async (req, res, next) => {
         } else {
             res.redirect('/admin_dashboard');// agadar ba pewista wa be agar na refersh nabitawa zor mwhima wakw framwork ish daka refersh daka
         }
+    }
+};
+
+exports.deleteSubImage1 = async (req, res, next) => {
+    const _id = req.params.id;
+    console.log(_id)
+    console.log("hello");
+    const product = await Product.findById(_id).then(pro => {
+        if (pro.subImage1) {
+            fileHelper.deleteFile(pro.subImage1, function (err) {
+                if (err) {
+                    next();
+                }
+            });
+        }
+        // function deleteFileFunction() {
+        //     setTimeout(function () {
+        //         fileHelper.deleteFile(pro.subImage1);
+        //     }, 10000);
+        // }
+        console.log(pro.subImage1);
+        pro.subImage1 = '';
+        return pro.save();
+    });
+    console.log("new" + product)
+    if (product) {
+        res.redirect('/admin_dashboard/update-product/' + _id);
     }
 };
 
@@ -193,90 +220,82 @@ exports.updateProductWithAdminDashboard = async (req, res, next) => {
             product.information = information;
             if (fileSetUpUrl) {
                 if (product.fileSetUp) {
-                    deleteFileFunctionfileSetUp();
-                    function deleteFileFunctionfileSetUp() {
-                        setTimeout(function () {
-                            fileHelper.deleteFile(product.fileSetUp);
-                        }, 10000);
-                    }
-                    fileHelper.deleteFile(product.fileSetUp);
+                    fileHelper.deleteFile(product.fileSetUp, function (err) {
+                        if (err) {
+                            next();
+                        }
+                    });
                 }
                 product.fileSetUp = fileSetUpUrl;
             }
             //product.categories = categories;
             if (sliderImageUrl) {
                 if (product.sliderImage) {
-                    deleteFileFunctionsliderImage();
-                    function deleteFileFunctionsliderImage() {
-                        setTimeout(function () {
-                            fileHelper.deleteFile(product.sliderImage);
-                        }, 10000);
-                    }
+                    fileHelper.deleteFile(product.sliderImage, function (err) {
+                        if (err) {
+                            next();
+                        }
+                    });
                 }
                 product.sliderImage = sliderImageUrl;
             }
             if (imageUrl) {
                 if (product.imageUrl) {
-                    deleteFileFunctionimageUrl();
-                    function deleteFileFunctionimageUrl() {
-                        setTimeout(function () {
-                            fileHelper.deleteFile(product.image);
-                        }, 10000);
-                    }
+                    fileHelper.deleteFile(product.imageUrl, function (err) {
+                        if (err) {
+                            next();
+                        }
+                    });
                 }
                 product.image = imageUrl;
             }
             if (backgroundImageForProductUrl) {
                 if (product.backgroundImageForProduct) {
-                    deleteFileFunctionbackgroundImageForProduct();
-                    function deleteFileFunctionbackgroundImageForProduct() {
-                        setTimeout(function () {
-                            fileHelper.deleteFile(product.backgroundImageForProduct);
-                        }, 10000);
-                    }
+                    fileHelper.deleteFile(product.backgroundImageForProduct, function (err) {
+                        if (err) {
+                            next();
+                        }
+                    });
                 }
                 product.backgroundImageForProduct = backgroundImageForProductUrl;
             }
             if (subImage1Url) {
-                if (product.subImage1) {
-                    deleteFileFunctionsubImage1();
-                    function deleteFileFunctionsubImage1() {
-                        setTimeout(function () {
-                            fileHelper.deleteFile(product.subImage1);
-                        }, 10000);
-                    }
+                if (product.subImage1[0]) {
+                    fileHelper.deleteFile(product.subImage1, function (err) {
+                        if (err) {
+                            next();
+                        }
+                    });
                 }
                 product.subImage1 = subImage1Url;
             }
             if (subImage2Url) {
                 if (product.subImage2) {
-                    deleteFileFunctionsubImage2();
-                    function deleteFileFunctionsubImage2() {
-                        setTimeout(function () {
-                            fileHelper.deleteFile(product.subImage2);
-                        }, 10000);
-                    }
+                    fileHelper.deleteFile(product.subImage2, function (err) {
+                        if (err) {
+                            next();
+                        }
+                    });
                 }
                 product.subImage2 = subImage2Url;
             }
             if (subImage3Url) {
                 if (product.subImage3) {
-                    deleteFileFunctionsubImage3();
-                    function deleteFileFunctionsubImage3() {
-                        setTimeout(function () {
-                            fileHelper.deleteFile(product.subImage3);
-                        }, 10000);
-                    }
+                    fileHelper.deleteFile(product.subImage3, function (err) {
+                        if (err) {
+                            next();
+                        }
+                    });
                 }
                 product.subImage3 = subImage3Url;
             }
             if (subImage4Url) {
                 if (product.subImage4) {
-                    function deleteFileFunction() {
-                        setTimeout(function () {
-                            fileHelper.deleteFile(product.subImage4);
-                        }, 10000);
-                    }
+                    fileHelper.deleteFile(product.subImage4, function (err) {
+                        if (err) {
+                            next();
+                        }
+                    });
                 }
                 product.subImage4 = subImage4Url;
             }

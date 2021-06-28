@@ -73,7 +73,7 @@ exports.products = catchAsync(async (req, res) => {
         wirelessCallingProducts = categorey.products.reverse().slice(0, 3);
     });
 
-    console.log(scanners);
+    //console.log(scanners);
 
     //const views = await Allviews.find({});
     res.status(200).render('pages/index', {
@@ -121,7 +121,7 @@ exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
         }
     }).populate('categories', 'name');
 
-    console.log(getOneProduct);
+    //console.log(getOneProduct);
 
     // SEND RESPONSE
     res.status(200).render('admin_dashboard/editProduct', {
@@ -140,7 +140,7 @@ exports.sigleProduct = catchAsync(async (req, res, next) => {
             $eq: id
         }
     }).populate('categories', 'name');
-    console.log(getOneProduct);
+    //console.log(getOneProduct);
 
 
 
@@ -168,7 +168,7 @@ exports.search = catchAsync(async (req, res, next) => {
         productName: { $regex: regex }
     }).populate('categories', 'name').limit(14);
 
-    console.log(findRes);
+    //console.log(findRes);
 
     res.status(200).render('pages/search', {
         title: 'all',
@@ -230,7 +230,7 @@ exports.shop = catchAsync(async (req, res, next) => {
         wirelessCallingProducts = categorey.products.reverse().slice(0, 3);
     });
 
-    console.log(scanners);
+    //console.log(scanners);
 
     //const views = await Allviews.find({});
     res.status(200).render('pages/shop', {
