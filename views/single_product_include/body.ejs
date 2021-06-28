@@ -53,6 +53,7 @@
                                                         <% if(product[0].image) { %>
                                                             <img id="zoom_03" src="/<%= product[0].image[0]%>" data-zoom-image="/<%= product[0].image[0]%>" alt="" />
                                                             <% } %>
+                                                            <% if(!product[0].subImage1 && !product[0].subImage2 && !product[0].subImage3 && !product[0].subImage4) {%> 
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
                                                                         <div id="gallery_01" class="carousel-btn slick-arrow-3 mt-30">
@@ -94,6 +95,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <% } %> 
                                                     </div>
                                                 </div>
                                                 <!-- imgs-zoom-area end -->
@@ -156,7 +158,7 @@
                                                                     <%= product[0].description%>
                                                                 </p>
                                                             </div>
-                                                            <% if(product[0].fileSetUp) {%> 
+                                                            <% if(product[0].information) {%> 
                                                             <div role="tabpanel" class="tab-pane" id="information">
                                                                 <p class="justify">
                                                                     <%= product[0].information%>
@@ -166,8 +168,7 @@
                                                             <% if(product[0].fileSetUp) {%> 
                                                             <div role="tabpanel" class="tab-pane" id="driver">
                                                                 <p class="justify">
-                                                                    <%= product[0].fileSetUp%>
-                                                                        <a href="/fileSetUp/myImage-1623713028947.zip" download>click download</a>
+                                                                        <a href="./<%= product[0].fileSetUp%>" download>click download</a>
                                                                 </p>
                                                                 <% } %> 
                                                             </div>

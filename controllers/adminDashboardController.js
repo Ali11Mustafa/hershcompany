@@ -42,24 +42,39 @@ exports.createProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     const time = req.body.time;
     const brandName = req.body.brandName;
     const information = req.body.information;
-    const fileSetUp = req.body.fileSetUp;
-    const sliderImage = req.files['sliderImage'][0];
-    const image = req.files['image'][0];
-    const subImage1 = req.files['subImage1'][0];
-    const subImage2 = req.files['subImage2'][0];
-    const subImage3 = req.files['subImage3'][0];
-    const subImage4 = req.files['subImage4'][0];
-    const backgroundImageForProduct = req.files['backgroundImageForProduct'][0];
+    let fileSetUpUrl = '';
+    if (req.files['fileSetUp']) {
+        fileSetUpUrl = req.files['fileSetUp'][0].path;
+    }
+    let sliderImageUrl = '';
+    if (req.files['sliderImage']) {
+        sliderImageUrl = req.files['sliderImage'][0].path;
+    }
+    let imageUrl = '';
+    if (req.files['image']) {
+        imageUrl = req.files['image'][0].path;
+    }
+    let subImage1Url = '';
+    if (req.files['subImage1']) {
+        subImage1Url = req.files['subImage1'][0].path;
+    }
+    let subImage2Url = '';
+    if (req.files['subImage2']) {
+        subImage2Url = req.files['subImage2'][0].path;
+    }
+    let subImage3Url = '';
+    if (req.files['subImage3']) {
+        subImage3Url = req.files['subImage3'][0].path;
+    }
+    let subImage4Url = '';
+    if (req.files['subImage4']) {
+        subImage4Url = req.files['subImage4'][0].path;
+    }
+    let backgroundImageForProductUrl = '';
+    if (req.files['backgroundImageForProduct']) {
+        backgroundImageForProductUrl = req.files['backgroundImageForProduct'][0].path;
+    }
     ////////////////////////////////////////////////////////////////////////
-    const imageUrl = image.path;
-    const sliderImageUrl = sliderImage.path
-    const backgroundImageForProductUrl = backgroundImageForProduct.path;
-    const subImage1Url = subImage1.path;
-    const subImage2Url = subImage2.path;
-    const subImage3Url = subImage3.path;
-    const subImage4Url = subImage4.path;
-    //console.log(imageUrl);
-
     const product = new Product({
         productName: productName,
         sliderImage: sliderImageUrl,
@@ -75,7 +90,7 @@ exports.createProductWithAdminDashboard = catchAsync(async (req, res, next) => {
         time: time,
         brandName: brandName,
         information: information,
-        fileSetUp: fileSetUp,
+        fileSetUp: fileSetUpUrl,
     });
 
     const newProduct = await Product.create(product);
@@ -127,6 +142,10 @@ exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
 exports.updateProductWithAdminDashboard = async (req, res, next) => {
     const id = req.params.id;
     const productName = req.body.productName;
+    let fileSetUpUrl = '';
+    if (req.files['fileSetUp']) {
+        fileSetUpUrl = req.files['fileSetUp'][0].path;
+    }
     let sliderImageUrl = '';
     if (req.files['sliderImage']) {
         sliderImageUrl = req.files['sliderImage'][0].path;
@@ -162,7 +181,6 @@ exports.updateProductWithAdminDashboard = async (req, res, next) => {
     const time = req.body.time;
     const brandName = req.body.brandName;
     const information = req.body.information;
-    const fileSetUp = req.body.fileSetUp;
     ////////////////////////////////////////////////////////////////////////
     await Product.findById(req.params.id)
         .then(product => {
@@ -172,7 +190,10 @@ exports.updateProductWithAdminDashboard = async (req, res, next) => {
             product.time = time;
             product.brandName = brandName;
             product.information = information;
-            product.fileSetUp = fileSetUp;
+            if (fileSetUpUrl) {
+                fileHelper.deleteFile(product.fileSetUp);
+                product.fileSetUp = fileSetUpUrl;
+            }
             //product.categories = categories;
             if (sliderImageUrl) {
                 fileHelper.deleteFile(product.sliderImage);

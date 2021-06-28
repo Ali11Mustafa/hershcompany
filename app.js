@@ -25,6 +25,8 @@ const fileStorage = multer.diskStorage({
             cb(null, 'images/background');
         } else if (file.fieldname === "sliderImage") {
             cb(null, 'images/slider');
+        } else if (file.fieldname === "fileSetUp") {
+            cb(null, 'images/fileSetUp');
         } else {
             cb(null, 'images/subImage');
         }
@@ -36,6 +38,8 @@ const fileStorage = multer.diskStorage({
             cb(null, `${new Date().toISOString().replace(/:/g, '-')}${file.originalname}`);
         } else if (file.fieldname === "sliderImage") {
             cb(null, `${new Date().toISOString().replace(/:/g, '-')}${file.originalname}`);
+        } else if (file.fieldname === "fileSetUp") {
+            cb(null, `${new Date().toISOString().replace(/:/g, '-')}${file.originalname}`);
         } else {
             cb(null, `${new Date().toISOString().replace(/:/g, '-')}${file.originalname}`);
         }
@@ -43,7 +47,7 @@ const fileStorage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
+    if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg' || path.extension(file.originalname === '.zip')) {
         cb(null, true)
     } else {
         cb(null, false)
@@ -58,13 +62,17 @@ const adminDashboardRouter = require('./routes/adminDashboardRoutes');
 const shopRouter = require('./routes/shopRoutes');
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).fields([
+app.use(multer({ storage: fileStorage }).fields([
     {
         name: 'image',
         maxCount: 1
     },
     {
         name: 'backgroundImageForProduct',
+        maxCount: 1
+    },
+    {
+        name: 'fileSetUp',
         maxCount: 1
     },
     {

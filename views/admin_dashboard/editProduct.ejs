@@ -61,9 +61,9 @@
 
         <!-- Text input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="percentage_discount">PRODUCT FILE SETUP</label>
+            <label class="col-md-4 control-label" for="fileSetUp">UPLOAD FILE SETUP</label>
             <div class="col-md-4">
-                <input id="percentage_discount" name="fileSetUp" placeholder="PRODUCT FILE SETUP" class="form-control input-md"  type="text" value="<%= product[0].fileSetUp%>">
+                <input id="fileSetUp" name="fileSetUp" placeholder="fileSetUp UPLOAD" class="form-control input-md"  type="file" value="./<%= product[0].fileSetUp[0]%>">
             </div>
         </div>
         <!-- Text input-->
@@ -79,20 +79,20 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="image">PRODUCT IMAGE(263 * 292)</label>
                 <div class="col-md-4">
-                    <input id="image" name="image" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="/<%=product[0].image%>">
+                    <input id="image" name="image" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="./<%=product[0].image[0]%>">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-4 control-label" for="sliderImage">SLIDER IMAGE(1479 * 211)</label>
                 <div class="col-md-4">
-                    <input id="sliderImage" name="sliderImage" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="<%= product[0].sliderImage%>">
+                    <input id="sliderImage" name="sliderImage" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="./<%= product[0].sliderImage[0]%>">
                 </div>
             </div>
             <!-- File Button -->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="backgroundImageForProduct">PRODUCT BACKGROUND IMAGE(1479 * 211)</label>
                 <div class="col-md-4">
-                    <input id="backgroundImageForProduct" name="backgroundImageForProduct" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="<%= product[0].backgroundImageForProduct%>">
+                    <input id="backgroundImageForProduct" name="backgroundImageForProduct" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="./<%= product[0].backgroundImageForProduct[0]%>">
                 </div>
             </div>
             <!-- Button -->
@@ -101,7 +101,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="subImage1">SUB IMAGE 1</label>
                 <div class="col-md-4">
-                    <input id="subImage1" name="subImage1" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="<%= product[0].subImage1%>">
+                    <input id="subImage1" name="subImage1" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="./<%= product[0].subImage1[0]%>">
                 </div>
             </div>
             <!-- Button -->
@@ -109,7 +109,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="subImage2">SUB IMAGE 2</label>
                 <div class="col-md-4">
-                    <input id="subImage2" name="subImage2" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="<%= product[0].subImage2%>">
+                    <input id="subImage2" name="subImage2" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="./<%= product[0].subImage2[0]%>">
                 </div>
             </div>
             <!-- Button -->
@@ -117,7 +117,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="subImage3">SUB IMAGE 3</label>
                 <div class="col-md-4">
-                    <input id="subImage3" name="subImage3" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="<%= product[0].subImage3%>">
+                    <input id="subImage3" name="subImage3" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="./<%= product[0].subImage3[0]%>">
                 </div>
             </div>
             <!-- Button -->
@@ -125,7 +125,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="subImage4">SUB IMAGE 4</label>
                 <div class="col-md-4">
-                    <input id="subImage4" name="subImage4" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="<%= product[0].subImage4%>">
+                    <input id="subImage4" name="subImage4" placeholder="IMAGE UPLOAD" class="form-control input-md"  type="file" value="./<%= product[0].subImage4[0]%>">
                 </div>
             </div>
             <!-- Button -->
