@@ -139,7 +139,7 @@ exports.deleteProductWithAdminDashboard = catchAsync(async (req, res, next) => {
 
 
 
-exports.updateProductWithAdminDashboard = async (req, res, next) => {
+exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     const id = req.params.id;
     const productName = req.body.productName;
     let fileSetUpUrl = '';
@@ -293,4 +293,4 @@ exports.updateProductWithAdminDashboard = async (req, res, next) => {
     if (doc) {
         res.redirect('/admin_dashboard');
     }
-};
+});
