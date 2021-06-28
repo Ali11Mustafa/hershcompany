@@ -123,7 +123,7 @@ exports.deleteProductWithAdminDashboard = async (req, res, next) => {
             fileHelper.deleteFile(product.subImage2);
             fileHelper.deleteFile(product.subImage3);
             fileHelper.deleteFile(product.subImage4);
-        }, 5000);
+        }, 10000);
     }
 
     const detailDelete = await product.remove();
@@ -193,6 +193,12 @@ exports.updateProductWithAdminDashboard = async (req, res, next) => {
             product.information = information;
             if (fileSetUpUrl) {
                 if (product.fileSetUp) {
+                    deleteFileFunctionfileSetUp();
+                    function deleteFileFunctionfileSetUp() {
+                        setTimeout(function () {
+                            fileHelper.deleteFile(product.fileSetUp);
+                        }, 10000);
+                    }
                     fileHelper.deleteFile(product.fileSetUp);
                 }
                 product.fileSetUp = fileSetUpUrl;
@@ -200,43 +206,77 @@ exports.updateProductWithAdminDashboard = async (req, res, next) => {
             //product.categories = categories;
             if (sliderImageUrl) {
                 if (product.sliderImage) {
-                    fileHelper.deleteFile(product.sliderImage);
+                    deleteFileFunctionsliderImage();
+                    function deleteFileFunctionsliderImage() {
+                        setTimeout(function () {
+                            fileHelper.deleteFile(product.sliderImage);
+                        }, 10000);
+                    }
                 }
                 product.sliderImage = sliderImageUrl;
             }
             if (imageUrl) {
                 if (product.imageUrl) {
-                    fileHelper.deleteFile(product.image);
+                    deleteFileFunctionimageUrl();
+                    function deleteFileFunctionimageUrl() {
+                        setTimeout(function () {
+                            fileHelper.deleteFile(product.image);
+                        }, 10000);
+                    }
                 }
                 product.image = imageUrl;
             }
             if (backgroundImageForProductUrl) {
                 if (product.backgroundImageForProduct) {
-                    fileHelper.deleteFile(product.backgroundImageForProduct);
+                    deleteFileFunctionbackgroundImageForProduct();
+                    function deleteFileFunctionbackgroundImageForProduct() {
+                        setTimeout(function () {
+                            fileHelper.deleteFile(product.backgroundImageForProduct);
+                        }, 10000);
+                    }
                 }
                 product.backgroundImageForProduct = backgroundImageForProductUrl;
             }
             if (subImage1Url) {
                 if (product.subImage1) {
-                    fileHelper.deleteFile(product.subImage1);
+                    deleteFileFunctionsubImage1();
+                    function deleteFileFunctionsubImage1() {
+                        setTimeout(function () {
+                            fileHelper.deleteFile(product.subImage1);
+                        }, 10000);
+                    }
                 }
                 product.subImage1 = subImage1Url;
             }
             if (subImage2Url) {
                 if (product.subImage2) {
-                    fileHelper.deleteFile(product.subImage2);
+                    deleteFileFunctionsubImage2();
+                    function deleteFileFunctionsubImage2() {
+                        setTimeout(function () {
+                            fileHelper.deleteFile(product.subImage2);
+                        }, 10000);
+                    }
                 }
                 product.subImage2 = subImage2Url;
             }
             if (subImage3Url) {
                 if (product.subImage3) {
-                    fileHelper.deleteFile(product.subImage3);
+                    deleteFileFunctionsubImage3();
+                    function deleteFileFunctionsubImage3() {
+                        setTimeout(function () {
+                            fileHelper.deleteFile(product.subImage3);
+                        }, 10000);
+                    }
                 }
                 product.subImage3 = subImage3Url;
             }
             if (subImage4Url) {
                 if (product.subImage4) {
-                    fileHelper.deleteFile(product.subImage4);
+                    function deleteFileFunction() {
+                        setTimeout(function () {
+                            fileHelper.deleteFile(product.subImage4);
+                        }, 10000);
+                    }
                 }
                 product.subImage4 = subImage4Url;
             }
