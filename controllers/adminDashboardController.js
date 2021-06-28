@@ -192,36 +192,52 @@ exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
             product.brandName = brandName;
             product.information = information;
             if (fileSetUpUrl) {
-                fileHelper.deleteFile(product.fileSetUp);
+                if (product.fileSetUp) {
+                    fileHelper.deleteFile(product.fileSetUp);
+                }
                 product.fileSetUp = fileSetUpUrl;
             }
             //product.categories = categories;
             if (sliderImageUrl) {
-                fileHelper.deleteFile(product.sliderImage);
+                if (product.sliderImage) {
+                    fileHelper.deleteFile(product.sliderImage);
+                }
                 product.sliderImage = sliderImageUrl;
             }
             if (imageUrl) {
-                fileHelper.deleteFile(product.image);
+                if (product.imageUrl) {
+                    fileHelper.deleteFile(product.image);
+                }
                 product.image = imageUrl;
             }
             if (backgroundImageForProductUrl) {
-                fileHelper.deleteFile(product.backgroundImageForProduct);
+                if (product.backgroundImageForProduct) {
+                    fileHelper.deleteFile(product.backgroundImageForProduct);
+                }
                 product.backgroundImageForProduct = backgroundImageForProductUrl;
             }
             if (subImage1Url) {
-                fileHelper.deleteFile(product.subImage1);
+                if (product.subImage1) {
+                    fileHelper.deleteFile(product.subImage1);
+                }
                 product.subImage1 = subImage1Url;
             }
             if (subImage2Url) {
-                fileHelper.deleteFile(product.subImage2);
+                if (product.subImage2) {
+                    fileHelper.deleteFile(product.subImage2);
+                }
                 product.subImage2 = subImage2Url;
             }
             if (subImage3Url) {
-                fileHelper.deleteFile(product.subImage3);
+                if (product.subImage3) {
+                    fileHelper.deleteFile(product.subImage3);
+                }
                 product.subImage3 = subImage3Url;
             }
             if (subImage4Url) {
-                fileHelper.deleteFile(product.subImage4);
+                if (product.subImage4) {
+                    fileHelper.deleteFile(product.subImage4);
+                }
                 product.subImage4 = subImage4Url;
             }
             return product.save().then(result => {
