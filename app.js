@@ -10,6 +10,8 @@ const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+var session = require('express-session');
+
 
 
 const app = express();
@@ -107,6 +109,54 @@ app.enable('trust proxy');
 
 app.set('view engine', 'ejs');
 
+
+///////////////////////////// translation ///////////////////////////////
+
+var i18n = require('i18n');
+
+i18n.configure({
+
+    //define how many languages we would support in our application
+    locales: ['en', 'ku', 'ar'],
+
+    //define the path to language json files, default is /locales
+    directory: __dirname + '/locales',
+
+    //define the default language
+    defaultLocale: 'en',
+
+    // define a custom cookie name to parse locale settings from
+    cookie: 'i18n'
+});
+
+app.use(cookieParser("i18n_demo"));
+
+app.use(session({
+    secret: "i18n_demo",
+    resave: true,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 }
+}));
+
+//init i18n after cookie-parser
+app.use(i18n.init);
+
+app.get('/ku', function (req, res) {
+    res.cookie('i18n', 'ku');
+    res.redirect('back')
+});
+
+app.get('/en', function (req, res) {
+    res.cookie('i18n', 'en');
+    res.redirect('back')
+});
+
+
+app.get('/ar', function (req, res) {
+    res.cookie('i18n', 'ar');
+    res.redirect('back')
+});
+//////////////////////////////////////////////////END TRANSLATION/////////////////////////////////////////////
 // 1) Global Middleware
 // Implement CORS
 app.use(cors());
@@ -152,7 +202,7 @@ app.use(
         limit: '30000kb'
     })
 );
-app.use(cookieParser());
+//app.use(cookieParser());
 
 // Test middleware
 app.use((req, res, next) => {
@@ -170,11 +220,17 @@ app.use((req, res, next) => {
 // });
 
 app.get('/about', function (req, res) {
-    res.render('pages/about');
+    res.setLocale(req.cookies.i18n);
+    res.render('pages/about', {
+        i18n: res
+    });
 });
 
 app.get('/contact', function (req, res) {
-    res.render('pages/contact');
+    res.setLocale(req.cookies.i18n);
+    res.render('pages/contact', {
+        i18n: res
+    });
 });
 
 app.use('/', viewRouter);

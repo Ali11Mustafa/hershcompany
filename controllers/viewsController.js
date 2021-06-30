@@ -7,6 +7,8 @@ const AppError = require('../utils/appError');
 exports.products = catchAsync(async (req, res) => {
     await Allviews.updateOne({ $inc: { homePageHasView: 1 } });
 
+    res.setLocale(req.cookies.i18n);
+
     const featuredProduct = await Products.find({}).populate('categories')
         .sort({ _id: -1 })
         .limit(8);
@@ -85,34 +87,38 @@ exports.products = catchAsync(async (req, res) => {
         featuredProducts: featuredProduct,
         dummyProducts: dummyProducts,
         specialProducts: specialProducts,
-        wirelessCallingProducts: wirelessCallingProducts
+        wirelessCallingProducts: wirelessCallingProducts,
+        i18n: res
     });
 });
 
 exports.adminDashboard = catchAsync(async (req, res, next) => {
     const products = await Products.find().populate('categories', 'name'); //-_id
     const categories = await Categories.find().populate('products'); //-_id
+    res.setLocale(req.cookies.i18n);
     // SEND RESPONSE
     res.status(200).render('pages/admin_dashboard', {
         products,
-        categories
+        categories,
+        i18n: res
     });
 });
 
 exports.addProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     const categories = await Categories.find().populate('products'); //-_id
-
+    res.setLocale(req.cookies.i18n);
     // SEND RESPONSE
     res.status(200).render('admin_dashboard/addProduct', {
         categories,
-        errorMessage: ''
+        errorMessage: '',
+        i18n: res
     });
 });
 
 
 exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     let id = req.params.id;
-
+    res.setLocale(req.cookies.i18n);
     const categories = await Categories.find().populate('products'); //-_id
 
     const getOneProduct = await Products.find({
@@ -126,7 +132,8 @@ exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     // SEND RESPONSE
     res.status(200).render('admin_dashboard/editProduct', {
         product: getOneProduct,
-        categories
+        categories,
+        i18n: res
     });
 });
 
@@ -134,6 +141,7 @@ exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
 exports.sigleProduct = catchAsync(async (req, res, next) => {
     let id = req.query.id;
     let categoreyId = req.query.categoreyId;
+    res.setLocale(req.cookies.i18n);
 
     const getOneProduct = await Products.find({
         _id: {
@@ -141,8 +149,6 @@ exports.sigleProduct = catchAsync(async (req, res, next) => {
         }
     }).populate('categories', 'name');
     //console.log(getOneProduct);
-
-
 
     const productsByCategory = await Products.find({
         categories: { _id: categoreyId }
@@ -155,13 +161,15 @@ exports.sigleProduct = catchAsync(async (req, res, next) => {
     // SEND RESPONSE
     res.status(200).render('pages/single_product', {
         product: getOneProduct,
-        relatedProducts: productsByCategory
+        relatedProducts: productsByCategory,
+        i18n: res
     });
 });
 
 exports.search = catchAsync(async (req, res, next) => {
     const regex = new RegExp(`${req.query.dsearch}`, 'gi');
     const searchFor = req.query.dsearch;
+    res.setLocale(req.cookies.i18n);
 
 
     const findRes = await Products.find({
@@ -173,12 +181,13 @@ exports.search = catchAsync(async (req, res, next) => {
     res.status(200).render('pages/search', {
         title: 'all',
         allProducts: findRes,
-        searchFor: searchFor
+        searchFor: searchFor,
+        i18n: res
     });
 });
 
 exports.shop = catchAsync(async (req, res, next) => {
-
+    res.setLocale(req.cookies.i18n);
     // // Get Recent Products
     // const products = await Products.find().populate('categories').sort({ _id: -1 }).limit(3);
 
@@ -238,17 +247,24 @@ exports.shop = catchAsync(async (req, res, next) => {
         receiptPrinters: receiptPrinters,
         barcodePrinters: barcodePrinters,
         scanners: scanners,
-        wirelessCallingProducts: wirelessCallingProducts
+        wirelessCallingProducts: wirelessCallingProducts,
+        i18n: res
     });
 });
 
 
 exports.error500 = catchAsync(async (req, res, next) => {
-    res.status(500).render('pages/500');
+    res.setLocale(req.cookies.i18n);
+    res.status(500).render('pages/500', {
+        i18n: res
+    });
 });
 
 exports.error404 = catchAsync(async (req, res, next) => {
-    res.status(404).render('pages/404');
+    res.setLocale(req.cookies.i18n);
+    res.status(404).render('pages/404', {
+        i18n: res
+    });
 });
 
 

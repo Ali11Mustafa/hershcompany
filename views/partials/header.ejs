@@ -29,16 +29,19 @@
                             <nav id="primary-menu">
                                 <ul class="main-menu text-center">
                                     <li>
-                                        <a href="/">Home</a>
+                                        <a href="/"><%= i18n.__("home") %> </a>
                                     </li>
                                     <li class="mega-parent">
-                                        <a href="/shop">Products</a>
+                                        <a href="/shop"><%= i18n.__("products")%></a>
                                     </li>
                                     <li>
-                                        <a href="/about">About us</a>
+                                        <a href="/about"><%= i18n.__("about us")%></a>
                                     </li>
                                     <li>
-                                        <a href="/contact">Contact</a>
+                                        <a href="/contact"><%= i18n.__("contact")%></a>
+                                    </li>
+                                    <li>
+                                        <%- include('../index_include/selectLanguage'); %>
                                     </li>
                                 </ul>
                             </nav>
@@ -74,19 +77,21 @@
                 <div class="col-lg-12">
                     <div class="mobile-menu">
                         <nav id="dropdown">
+
                             <ul>
                                 <li>
-                                    <a href="/">Home</a>
+                                    <a href="/"><%= i18n.__("home")%></a>
                                 </li>
                                 <li>
-                                    <a href="/shop">Products</a>
+                                    <a href="/shop"><%= i18n.__("products")%></a>
                                 </li>
                                 <li>
-                                    <a href="/about">About Us</a>
+                                    <a href="/about"><%= i18n.__("about us")%></a>
                                 </li>
                                 <li>
-                                    <a href="/contact">Contact</a>
+                                    <a href="/contact"><%= i18n.__("contact")%></a>
                                 </li>
+
                             </ul>
                         </nav>
                     </div>
