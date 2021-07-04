@@ -1,30 +1,32 @@
-<div class="slider-area plr-185 mb-80 section">
-    <div class="container-fluid">
-        <div class="slider-content">
-            <div class="active-slider-1 slick-arrow-1 slick-dots-1">
-                <!-- layer-1 Start -->
-                <% sliderProducts.forEach(function(product) { %>
-                    <div class="col-lg-12">
-                        <div class="layer-1">
-                            <div class="slider-img">
-                                <img src="/<%= product.sliderImage[0] %>" alt="">
-                            </div>
-                            <div class="slider-info gray-bg">
-                                <div class="slider-info-inner">
-                                    <h1 class="slider-title-1 text-uppercase text-black-1">
-                                        <%= product.productName %>
-                                    </h1>
-                                    <div class="slider-brief text-black-2">
-                                        <p>
-                                            <%= product.description %>
-                                        </p>
-                                    </div>
-                                </div>
+<div class="slider-area-wrapper">
+    <div class="slider-content-active">
+        <div class="slider-slide-item bg-img" data-bg="assets/img/slider/slider-1.jpg">
+            <div class="container container-wide h-100">
+                <div class="row align-items-center h-100">
+                    <div class="col-lg-6">
+                        <div class="slide-content">
+                            <div class="slide-content-inner">
+                                <h3>NEW TECHNOLOGY & BUILD</h3>
+                                <h2>WHEELS &amp; TIRES COLLECTIONS</h2>
                             </div>
                         </div>
                     </div>
-                    <% }); %>
-                <!-- layer-1 end -->
+                </div>
+            </div>
+        </div>
+        <div class="slider-slide-item bg-img" data-bg="assets/img/slider/slider-2.jpg">
+            <div class="container container-wide h-100">
+                <div class="row align-items-center h-100">
+                    <div class="col-12">
+                        <div class="slide-content">
+                            <div class="slide-content-inner">
+                                <h3>NEW TECHNOLOGY & BUILD</h3>
+                                <h2>WHEELS &amp; TIRES <br> COLLECTIONS</h2>
+                                <a class="btn btn-white" href="shop.html">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

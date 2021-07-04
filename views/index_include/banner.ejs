@@ -1,27 +1,29 @@
-<% if(locals.specialProducts) { %>
-    <div class="banner-section ptb-60">
-        <div class="container">
-            <div class="row">
-                <!-- banner-item start -->
-                <% specialProducts.forEach(function(specialProduct) { %>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="banner-item banner-2">
-                            <div class="banner-img">
-                                <a href="#"><img src="/<%= specialProduct.image[0]%>" alt="" /></a>
-                            </div>
-                            <h3 class="banner-title-2">
-                                <a href="#">
-                                    <%= specialProduct.productName%>
-                                </a>
-                            </h3>
-                            <h3 class="pro-price">
-                                <%= specialProduct.price%>
-                            </h3>
-                        </div>
+<div class="banner-area-wrapper banner-mt">
+    <div class="container container-wide">
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="banner-item">
+                    <div class="banner-item__img">
+                        <a href="#"><img src="assets/img/banner/banner-1.jpg" alt="Banner" /></a>
                     </div>
-                    <% }); %>
-                        <!-- banner-item end -->
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="banner-item">
+                    <div class="banner-item__img">
+                        <a href="#"><img src="assets/img/banner/banner-2.jpg" alt="Banner" /></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="banner-item">
+                    <div class="banner-item__img">
+                        <a href="#"><img src="assets/img/banner/banner-3.jpg" alt="Banner" /></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <% } %>
+</div>

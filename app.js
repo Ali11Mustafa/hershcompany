@@ -13,7 +13,6 @@ const bodyParser = require('body-parser');
 var session = require('express-session');
 
 
-
 const app = express();
 const fs = require("fs");
 const multer = require("multer");
@@ -115,7 +114,6 @@ app.set('view engine', 'ejs');
 var i18n = require('i18n');
 
 i18n.configure({
-
     //define how many languages we would support in our application
     locales: ['en', 'ku', 'ar'],
 
@@ -215,9 +213,9 @@ app.use((req, res, next) => {
     next();
 });
 
-// app.get('/', function(req, res) {
-//   res.render('pages/index');
-// });
+app.get('/', function (req, res) {
+    res.render('pages/index');
+});
 
 app.get('/about', function (req, res) {
     res.setLocale(req.cookies.i18n);
@@ -232,6 +230,7 @@ app.get('/contact', function (req, res) {
         i18n: res
     });
 });
+
 
 app.use('/', viewRouter);
 app.use('/admin_dashboard', adminDashboardRouter);

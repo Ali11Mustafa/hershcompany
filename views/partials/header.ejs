@@ -1,106 +1,97 @@
-<!--[if lt IE 8]>
-  <p class="browserupgrade">
-    You are using an <strong>outdated</strong> browser. Please
-    <a href="http://browsehappy.com/">upgrade your browser</a> to improve your
-    experience.
-  </p>
-<![endif]-->
+<header class="header-area">
+    <div class="container container-wide">
+        <div class="row align-items-center">
+            <div class="col-sm-4 col-lg-2">
+                <div class="site-logo text-center text-sm-left">
+                    <a href="index.html"><img src="assets/img/logo.png" alt="Logo" /></a>
+                </div>
+            </div>
 
-<!-- Body main wrapper start -->
-<div class="wrapper">
-    <!-- START HEADER AREA -->
-    <header class="header-area header-wrapper">
-        <!-- header-top-bar -->
-        <!-- header-middle-area -->
-        <div class="header-middle-area plr-185">
-            <div class="container-fluid">
-                <div class="full-width-mega-dropdown">
-                    <div class="row">
-                        <!-- logo -->
-                        <div class="col-lg-2 col-md-4">
-                            <div class="logo">
-                                <a href="/">
-                                    <img src="img/logo/logo2.png" alt="main logo" />
-                                </a>
-                            </div>
-                        </div>
-                        <!-- primary-menu -->
-                        <div class="col-lg-8 d-none d-lg-block">
-                            <nav id="primary-menu">
-                                <ul class="main-menu text-center">
-                                    <li>
-                                        <a href="/"><%= i18n.__("home") %> </a>
-                                    </li>
-                                    <li class="mega-parent">
-                                        <a href="/shop"><%= i18n.__("products")%></a>
-                                    </li>
-                                    <li>
-                                        <a href="/about"><%= i18n.__("about us")%></a>
-                                    </li>
-                                    <li>
-                                        <a href="/contact"><%= i18n.__("contact")%></a>
-                                    </li>
-                                    <li>
-                                        <%- include('../index_include/selectLanguage'); %>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <!-- header-search -->
-                        <div class="col-lg-2 col-md-8">
-                            <div class="search-top-cart f-right">
-                                <!-- header-search -->
-                                <div class="header-search f-left">
-                                    <div class="header-search-inner">
-                                        <button class="search-toggle"><i class="zmdi zmdi-search"></i></button>
-                                        <form action="/search" method="get">
-                                            <div class="top-search-box">
-                                                <input type="text" name="dsearch" placeholder="Search here your product..." />
-                                                <button type="submit" value="search"><i class="zmdi zmdi-search"></i></button>
-                                            </div>
-                                        </form>
+            <div class="col-lg-7 d-none d-lg-block">
+                <div class="site-navigation">
+                    <ul class="main-menu nav">
+                        <li class="has-submenu"><a href="/">Home</a>
+                        </li>
+                        <li class="has-submenu"><a href="/carBeautifing">Car Beautifying</a>
+                        </li>
+                        <li class="has-submenu"><a href="/carSales">Car Sales</a>
+                        </li>
+                        <li class="has-submenu"><a href="/ourSuppliers">Our Suppliers</a>
+                        </li>                      
+                        <li class="has-submenu"><a href="#">Our Works</a>
+                            <ul class="sub-menu">
+                                <li><a href="/pictures">Picture</a></li>
+                                <li><a href="blog.html">Vedio</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-sm-8 col-lg-3">
+                <div class="site-action d-flex justify-content-center justify-content-sm-end align-items-center">
+                    <div class="mini-cart-wrap">
+                        <a href="cart.html" class="btn-mini-cart">
+                            <i class="ion-bag"></i>
+                            <span class="cart-total">3</span>
+                        </a>
+
+                        <div class="mini-cart-content">
+                            <div class="mini-cart-product">
+                                <div class="mini-product">
+                                    <div class="mini-product__thumb">
+                                        <a href="single-product.html"><img src="assets/img/product/product-1.png" alt="product" /></a>
+                                    </div>
+                                    <div class="mini-product__info">
+                                        <h2 class="title"><a href="single-product.html">Auto Clutch & Brake</a></h2>
+
+                                        <div class="mini-calculation">
+                                            <p class="price">5 x <span>$20.33</span></p>
+                                            <button class="remove-pro"><i class="ion-trash-b"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mini-product">
+                                    <div class="mini-product__thumb">
+                                        <a href="single-product.html"><img src="assets/img/product/product-2.png" alt="product" /></a>
+                                    </div>
+                                    <div class="mini-product__info">
+                                        <h2 class="title"><a href="single-product.html">Leather Steering Wheel</a></h2>
+
+                                        <div class="mini-calculation">
+                                            <p class="price">5 x <span>$20.33</span></p>
+                                            <button class="remove-pro"><i class="ion-trash-b"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mini-product">
+                                    <div class="mini-product__thumb">
+                                        <a href="single-product.html"><img src="assets/img/product/product-3.png" alt="product" /></a>
+                                    </div>
+                                    <div class="mini-product__info">
+                                        <h2 class="title"><a href="single-product.html">Leather Steering Wheel</a></h2>
+
+                                        <div class="mini-calculation">
+                                            <p class="price">5 x <span>$20.33</span></p>
+                                            <button class="remove-pro"><i class="ion-trash-b"></i></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- END HEADER AREA -->
 
-    <!-- START MOBILE MENU AREA -->
-    <div class="mobile-menu-area d-block d-lg-none section">
-        <li>
-            <%- include('../index_include/selectLanguage'); %>
-        </li>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="mobile-menu">
-                        <nav id="dropdown">
-
-                            <ul>
-                                <li>
-                                    <a href="/"><%= i18n.__("home")%></a>
-                                </li>
-                                <li>
-                                    <a href="/shop"><%= i18n.__("products")%></a>
-                                </li>
-                                <li>
-                                    <a href="/about"><%= i18n.__("about us")%></a>
-                                </li>
-                                <li>
-                                    <a href="/contact"><%= i18n.__("contact")%></a>
-                                </li>
-                                
-
-                            </ul>
-                        </nav>
+                    <div class="responsive-menu d-lg-none">
+                        <button class="btn-menu">
+                            <i class="fa fa-bars"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- END MOBILE MENU AREA -->
+</header>

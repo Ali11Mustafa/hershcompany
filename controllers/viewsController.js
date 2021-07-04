@@ -104,6 +104,79 @@ exports.adminDashboard = catchAsync(async (req, res, next) => {
     });
 });
 
+exports.singleCarBeautifing = catchAsync(async (req, res, next) => {
+    res.setLocale(req.cookies.i18n);
+    // SEND RESPONSE
+    res.status(200).render('pages/singleCarBeautifing', {
+        i18n: res
+    });
+});
+
+exports.carBeautifing = catchAsync(async (req, res, next) => {
+    res.setLocale(req.cookies.i18n);
+    // SEND RESPONSE
+    res.status(200).render('pages/carBeautifing', {
+        i18n: res
+    });
+});
+
+exports.singleCarSales = catchAsync(async (req, res, next) => {
+    res.setLocale(req.cookies.i18n);
+    // SEND RESPONSE
+    res.status(200).render('pages/singleCarSales', {
+        i18n: res
+    });
+});
+
+exports.carSales = catchAsync(async (req, res, next) => {
+    res.setLocale(req.cookies.i18n);
+    // SEND RESPONSE
+    res.status(200).render('pages/carSales', {
+        i18n: res
+    });
+});
+
+
+exports.singleCarBeautifing = catchAsync(async (req, res, next) => {
+    res.setLocale(req.cookies.i18n);
+    // SEND RESPONSE
+    res.status(200).render('pages/singleCarBeautifing', {
+        i18n: res
+    });
+});
+
+exports.carBeautifing = catchAsync(async (req, res, next) => {
+    res.setLocale(req.cookies.i18n);
+    // SEND RESPONSE
+    res.status(200).render('pages/carBeautifing', {
+        i18n: res
+    });
+});
+
+exports.singleSupplier = catchAsync(async (req, res, next) => {
+    res.setLocale(req.cookies.i18n);
+    // SEND RESPONSE
+    res.status(200).render('pages/singleSupplier', {
+        i18n: res
+    });
+});
+
+exports.suppliers = catchAsync(async (req, res, next) => {
+    res.setLocale(req.cookies.i18n);
+    // SEND RESPONSE
+    res.status(200).render('pages/suppliers', {
+        i18n: res
+    });
+});
+
+exports.pictures = catchAsync(async (req, res, next) => {
+    res.setLocale(req.cookies.i18n);
+    // SEND RESPONSE
+    res.status(200).render('pages/pictures', {
+        i18n: res
+    });
+});
+
 exports.addProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     const categories = await Categories.find().populate('products'); //-_id
     res.setLocale(req.cookies.i18n);

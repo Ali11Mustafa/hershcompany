@@ -1,0 +1,27 @@
+<% if(locals.specialProducts) { %>
+    <div class="banner-section ptb-60">
+        <div class="container">
+            <div class="row">
+                <!-- banner-item start -->
+                <% specialProducts.forEach(function(specialProduct) { %>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="banner-item banner-2">
+                            <div class="banner-img">
+                                <a href="#"><img src="/<%= specialProduct.image[0]%>" alt="" /></a>
+                            </div>
+                            <h3 class="banner-title-2">
+                                <a href="#">
+                                    <%= specialProduct.productName%>
+                                </a>
+                            </h3>
+                            <h3 class="pro-price">
+                                <%= specialProduct.price%>
+                            </h3>
+                        </div>
+                    </div>
+                    <% }); %>
+                        <!-- banner-item end -->
+            </div>
+        </div>
+    </div>
+    <% } %>
