@@ -350,3 +350,4 @@ exports.error404 = catchAsync(async (req, res, next) => {
 // git commit -m "changes"
 // git add -A
 // git push origin master
+// git pull https://github.com/mohamednazm-web/hershcompany.git master
