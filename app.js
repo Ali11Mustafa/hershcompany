@@ -60,7 +60,6 @@ const viewRouter = require('./routes/viewRoutes');
 const productRouter = require('./routes/productRoutes');
 const categoreyRouter = require('./routes/categorieRoutes');
 const adminDashboardRouter = require('./routes/adminDashboardRoutes');
-const shopRouter = require('./routes/shopRoutes');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(multer({ storage: fileStorage }).fields([
@@ -213,9 +212,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', function (req, res) {
-    res.render('pages/index');
-});
+// app.get('/', function (req, res) {
+//     res.render('pages/index');
+// });
 
 app.get('/about', function (req, res) {
     res.setLocale(req.cookies.i18n);
@@ -237,7 +236,6 @@ app.use('/admin_dashboard', adminDashboardRouter);
 //app.use('/admin_dashboard/uploadImage', uploadImageRoutes);
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/categories', categoreyRouter);
-//app.use('/api/v1/shop', shopRouter);
 
 app.all('*', (req, res, next) => {
     next(new AppError(`Can not find ${req.originalUrl} on this server!`, 404));

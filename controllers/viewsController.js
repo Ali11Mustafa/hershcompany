@@ -9,30 +9,30 @@ exports.products = catchAsync(async (req, res) => {
 
     res.setLocale(req.cookies.i18n);
 
-    const featuredProduct = await Products.find({}).populate('categories')
-        .sort({ _id: -1 })
-        .limit(8);
+    // const featuredProduct = await Products.find({}).populate('categories')
+    //     .sort({ _id: -1 })
+    //     .limit(8);
 
-    const sliderProduct = await Products.find({}).populate('categories')
-        .sort({ _id: -1 })
-        .limit(3);
+    // const sliderProduct = await Products.find({}).populate('categories')
+    //     .sort({ _id: -1 })
+    //     .limit(3);
 
-    let posSystems;
-    const posSystemCategorey = await Categories.find({
-        name: { $eq: 'posSystem' }
+    let carBeautifings;
+    const carBeautifingCategorey = await Categories.find({
+        name: { $eq: 'carBeautifing' }
     }).populate('products');
-    posSystemCategorey.forEach(function (categorey) {
-        posSystems = categorey.products
+    carBeautifingCategorey.forEach(function (categorey) {
+        carBeautifings = categorey.products
             .reverse()
-            .slice(0, 8);
+            .slice(0, 20);
     });
 
-    let receiptPrinters;
-    const receiptPrinterCategorey = await Categories.find({
-        name: { $eq: 'receiptPrinter' }
+    let carSales;
+    const carSaleCategorey = await Categories.find({
+        name: { $eq: 'carSales' }
     }).populate('products');
-    receiptPrinterCategorey.forEach(function (categorey) {
-        receiptPrinters = categorey.products.reverse().slice(0, 8);
+    carSaleCategorey.forEach(function (categorey) {
+        carSales = categorey.products.reverse().slice(0, 5);
     });
 
     let barcodePrinters;
@@ -79,16 +79,16 @@ exports.products = catchAsync(async (req, res) => {
 
     //const views = await Allviews.find({});
     res.status(200).render('pages/index', {
-        posSystems: posSystems,
-        receiptPrinters: receiptPrinters,
-        barcodePrinters: barcodePrinters,
-        scanners: scanners,
-        sliderProducts: sliderProduct,
-        featuredProducts: featuredProduct,
-        dummyProducts: dummyProducts,
-        specialProducts: specialProducts,
-        wirelessCallingProducts: wirelessCallingProducts,
-        i18n: res
+        carBeautifings: carBeautifings,
+        carSales: carSales,
+        // barcodePrinters: barcodePrinters,
+        // scanners: scanners,
+        // sliderProducts: sliderProduct,
+        // featuredProducts: featuredProduct,
+        // dummyProducts: dummyProducts,
+        // specialProducts: specialProducts,
+        // wirelessCallingProducts: wirelessCallingProducts,
+        // i18n: res
     });
 });
 
@@ -104,14 +104,6 @@ exports.adminDashboard = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.singleCarBeautifing = catchAsync(async (req, res, next) => {
-    res.setLocale(req.cookies.i18n);
-    // SEND RESPONSE
-    res.status(200).render('pages/singleCarBeautifing', {
-        i18n: res
-    });
-});
-
 exports.carBeautifing = catchAsync(async (req, res, next) => {
     res.setLocale(req.cookies.i18n);
     // SEND RESPONSE
@@ -121,13 +113,32 @@ exports.carBeautifing = catchAsync(async (req, res, next) => {
 });
 
 exports.singleCarSales = catchAsync(async (req, res, next) => {
+    let id = req.query.id;
+    let categoreyId = req.query.categoreyId;
     res.setLocale(req.cookies.i18n);
+
+    const getOneProduct = await Products.find({
+        _id: {
+            $eq: id
+        }
+    }).populate('categories', 'name');
+    //console.log(getOneProduct);
+
+    const productsByCategory = await Products.find({
+        categories: { _id: categoreyId }
+    })
+        .populate('categories', 'name')
+        .limit(3);
+
+    //console.log(productsByCategory);
+
     // SEND RESPONSE
     res.status(200).render('pages/singleCarSales', {
+        product: getOneProduct,
+        relatedProducts: productsByCategory,
         i18n: res
     });
 });
-
 exports.carSales = catchAsync(async (req, res, next) => {
     res.setLocale(req.cookies.i18n);
     // SEND RESPONSE
@@ -138,9 +149,29 @@ exports.carSales = catchAsync(async (req, res, next) => {
 
 
 exports.singleCarBeautifing = catchAsync(async (req, res, next) => {
+    let id = req.query.id;
+    let categoreyId = req.query.categoreyId;
     res.setLocale(req.cookies.i18n);
+
+    const getOneProduct = await Products.find({
+        _id: {
+            $eq: id
+        }
+    }).populate('categories', 'name');
+    //console.log(getOneProduct);
+
+    const productsByCategory = await Products.find({
+        categories: { _id: categoreyId }
+    })
+        .populate('categories', 'name')
+        .limit(3);
+
+    //console.log(productsByCategory);
+
     // SEND RESPONSE
     res.status(200).render('pages/singleCarBeautifing', {
+        product: getOneProduct,
+        relatedProducts: productsByCategory,
         i18n: res
     });
 });
@@ -210,34 +241,6 @@ exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     });
 });
 
-
-exports.sigleProduct = catchAsync(async (req, res, next) => {
-    let id = req.query.id;
-    let categoreyId = req.query.categoreyId;
-    res.setLocale(req.cookies.i18n);
-
-    const getOneProduct = await Products.find({
-        _id: {
-            $eq: id
-        }
-    }).populate('categories', 'name');
-    //console.log(getOneProduct);
-
-    const productsByCategory = await Products.find({
-        categories: { _id: categoreyId }
-    })
-        .populate('categories', 'name')
-        .limit(3);
-
-    //console.log(productsByCategory);
-
-    // SEND RESPONSE
-    res.status(200).render('pages/single_product', {
-        product: getOneProduct,
-        relatedProducts: productsByCategory,
-        i18n: res
-    });
-});
 
 exports.search = catchAsync(async (req, res, next) => {
     const regex = new RegExp(`${req.query.dsearch}`, 'gi');
