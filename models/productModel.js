@@ -2,47 +2,28 @@ const mongoose = require('mongoose');
 
 const posterSchema = new mongoose.Schema({
     productName: {
-        type: String,
-        unique: true
-    },
-    idImage: {
-        type: String,
-    },
-    time: { type: Date, default: Date.now },
-    stars: {
-        type: Number
-    },
-    typeProduct: {
         type: String
     },
-    sliderImage: [{
-        type: String,
-    }],
-    image: [{
-        type: String,
-    }],
-    backgroundImageForProduct: { //git commit -m "changes" 
-        type: String, //git push origin master
-        default: 'default.jpg'
-    },
-    // slug: String,
     price: {
         type: Number
     },
-    description: {
+    image: [{
+        type: String,
+    }],
+    vedioUrl: {
         type: String
     },
-    information: {
-        type: String,
+    color: {
+        type: String
+    },
+    description: {
+        type: String
     },
     brandName: {
         type: String
     },
     hasViewd: {
         type: Number
-    },
-    fileSetUp: {
-        type: String
     },
     categories: {
         type: mongoose.Schema.Types.ObjectId,
@@ -60,6 +41,7 @@ const posterSchema = new mongoose.Schema({
     subImage4: [{
         type: String,
     }],
+    time: { type: Date, default: Date.now },
 }, { timestamps: true });
 
 const Products = mongoose.model('Products', posterSchema);

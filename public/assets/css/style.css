@@ -2043,9 +2043,15 @@ Scroll Top Button
 }
 
 .product-item__content {
+
   padding: 0 30px 25px;
   position: relative;
+
+    padding: 1rem 3rem;    
+    position: relative;
 }
+
+
 
 .product-item__content .title {
   font-size: 18px;
@@ -3325,7 +3331,6 @@ Scroll Top Button
 .tags li {
   display: inline-block;
 }
-
 .tags li a {
   border: 1px solid #e1e1e1;
   line-height: 1em;
