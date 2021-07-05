@@ -1,4 +1,5 @@
 {
+"we":{
     "home": "Home",
     "products": "Products",
     "about us": "About Us",
@@ -7,4 +8,18 @@
     "new product": "NEW PRODUCTS",
     "des": "There are many variations of passages of brands available,",
     "search result": "THE SEARCH RESULT OF"
+},
+
+"contact":{
+    "Our Location": "Our Location",
+    "Contact us ": "Contact us ",
+    "contact via email": "contact via email",
+    "GET IN TOUCH": "GET IN TOUCH",
+    "SEND A MESSAGE":"SEND A MESSAGE",
+    "Name":"Name",
+    "Email":"Email",
+    "Subject":"Subject",
+    "Write Message":"Write Message"
+    
+}
 }
